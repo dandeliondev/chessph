@@ -15,5 +15,11 @@
 //    return view('welcome');
 //});
 
-Route::get('/', 'RatingController@index');
-Route::get('/import', 'RatingController@import');
+
+Route::get('/', function () {
+    return redirect('ncfp-rating');
+});
+Route::get('/ncfp-rating', 'RatingController@index');
+Route::get('/ncfp-rating/{cat}', 'RatingController@index');
+
+//Route::get('/ncfp-rating', 'RatingController@import');

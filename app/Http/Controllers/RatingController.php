@@ -22,6 +22,35 @@ class RatingController extends Controller
 
     public function index()
     {
+        $nav = [
+            'top100'  => [
+                'Overall'  => 'top100/overall',
+                'Under 20' => 'top100/under-20',
+                'Under 18' => 'top100/under-18',
+            ],
+            'top100m' => [
+                'Overall'  => 'top100/overall',
+                'Under 20' => 'top100/under-20',
+                'Under 18' => 'top100/under-18',
+            ],
+            'top100w' => [
+                'Overall'  => 'top100/overall',
+                'Under 20' => 'top100/under-20',
+                'Under 18' => 'top100/under-18',
+            ],
+
+        ];
+
+        $data = [
+            'nav' => $nav
+
+        ];
+        return view('rating.ncfprating', $data);
+    }
+
+    public function store_ratings()
+    {
+        exit('hello world');
         //$file_n   = Storage::url('rating_march_2019.csv');
         $file_n = Storage::disk('local')->path('rating_march_2019.csv');;
         $file     = fopen($file_n, "r");
@@ -70,8 +99,8 @@ class RatingController extends Controller
             foreach ($arr_int as $i) {
                 if (!isset($data[$i])) {
                     $data[$i] = 0;
-                }else{
-                    $data[$i] = $res = preg_replace("/[^0-9]/", "", $data[$i] );
+                } else {
+                    $data[$i] = $res = preg_replace("/[^0-9]/", "", $data[$i]);
 
                 }
             }
