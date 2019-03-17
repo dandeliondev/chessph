@@ -2,17 +2,18 @@
 <html>
 <head>
     <!-- Standard Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
     <title>@yield('title') - CPH</title>
+    <meta name="description" content="@yield('meta_description')">
+    <meta name="keywords" content="@yield('meta_keywords')">
     @yield('header-metas')
-    <!-- Required meta tags -->
+<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CPH - @yield('title')</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -24,13 +25,18 @@
 <body>
 
 <div class="ui container">
-    <br />
-    <h1 class="ui header">CPH</h1>
-<div class="container">
-    @yield('content')
+    <div class="header_div">
+        <img src="{{URL::to('img/logo.jpg')}}" style="width: 300px">
+    </div>
+    <div class="container">
+        @yield('content')
+    </div>
 </div>
+<div class="footer">
+    <p>&copy; {{date('Y')}} copyright chesshermit.com
+        <br /> Developed by ddeluna
+    </p>
 </div>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script
@@ -39,6 +45,7 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 @yield('footer-assets')
+
 </body>
 </html>
 

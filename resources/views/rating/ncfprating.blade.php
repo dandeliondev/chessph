@@ -1,79 +1,80 @@
 @extends('layouts.app')
-@section('title', 'NCFP Rating')
+@section('title', $title)
+@section('meta_description', $meta_description)
+@section('meta_keywords',  $meta_keywords)
 
 @section('content')
 
-    <div class="ui secondary pointing menu">
-        <a class="item active">
-            Home
-        </a>
-        <div class="ui pointing dropdown link item">
-            <span class="text">Top 100</span>
-            <i class="dropdown icon"></i>
-            <div class="menu">
 
-                @foreach($nav['top100'] as $label=>$link)
-                    <a class="item" href="{{$link}}">{{$label}}</a>
-                @endforeach
+    @include('partials.nav_ncfp_rating')
 
-            </div>
-        </div>
-        <div class="ui pointing dropdown link item">
-            <span class="text">Top 100 Men</span>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-
-                @foreach($nav['top100m'] as $label=>$link)
-                    <a class="item" href="{{$link}}">{{$label}}</a>
-                @endforeach
-
-            </div>
-        </div>
-        <div class="ui pointing dropdown link item">
-            <span class="text">Top 100 Women</span>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-
-                @foreach($nav['top100w'] as $label=>$link)
-                    <a class="item" href="{{$link}}">{{$label}}</a>
-                @endforeach
-
-            </div>
-        </div>
-
-
-    </div>
-
-    @include('partials.search_filter')
+    <h2 class="ui header">
+        {{$header}}
+        <div class="sub header">{{$subheader}}</div>
+    </h2>
+    @if($filter == true)
+        @include('partials.rating_search_filter')
+    @endif
 
 
     <table class="ui celled table">
         <thead>
         <tr>
+            <th>#</th>
             <th>Name</th>
+            <th>Rating Standard</th>
+            <th>Rating Rapid</th>
+            <th>Rating Blitz</th>
+            <th>Title</th>
+            <th>Gender</th>
             <th>Age</th>
-            <th>Job</th>
+            <th>Birthdate</th>
+            <th>NCFP ID</th>
+            <th>Fide ID</th>
+
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td data-label="Name">James</td>
-            <td data-label="Age">24</td>
-            <td data-label="Job">Engineer</td>
-        </tr>
-        <tr>
-            <td data-label="Name">Jill</td>
-            <td data-label="Age">26</td>
-            <td data-label="Job">Engineer</td>
-        </tr>
-        <tr>
-            <td data-label="Name">Elyse</td>
-            <td data-label="Age">24</td>
-            <td data-label="Job">Designer</td>
-        </tr>
+        @php
+            $ctr = ($page - 1) * 100;
+        @endphp
+        @foreach($list as $row)
+            @php
+
+                $ctr++;
+
+            @endphp
+            <tr>
+                <td data-label="num">{{$ctr}}</td>
+                <td data-label="Name"><span style="font-weight: bold">{{ucwords(strtolower($row->lastname))}}</span>, {{ucwords(strtolower($row->firstname))}}</td>
+                <td data-label="Rating Standard">{{$row->standard}}</td>
+                <td data-label="Rating Rapid">{{$row->rapid}}</td>
+                <td data-label="Rating Blitz">{{$row->blitz}}</td>
+                <td data-label="Title">{{strtolower($row->title)}}</td>
+                <td data-label="Gender">{{strtolower($row->gender)}}</td>
+                <td data-label="Age">{{$row->age}}</td>
+                <td data-label="Birthdate">{{$row->birthdate}}</td>
+                <td data-label="NCFP ID">{{$row->ncfp_id}}</td>
+                <td data-label="FIDE ID">{{$row->fide_id}}</td>
+
+            </tr>
+        @endforeach
+
         </tbody>
     </table>
+    @if($paginate)
+        @include('partials.pagination', ['paginator' => $list])
+    @endif
 
+    <br/><br/>
+    <div class="ui warning message">
+        <i class="close icon"></i>
+        <div class="header">
+            Disclaimer
+        </div>
+        This is unofficial NCFP rating list, and should not be used as an official reference, you may find the NCFP official rating list on their official <a href="https://www.facebook.com/ncfpsecretariat2012/"
+                                                                                                                                                              target="_blank">facebook page</a>
+    </div>
 
 
 
@@ -84,6 +85,20 @@
         $(document).ready(function () {
             $('.ui.dropdown')
                 .dropdown();
+
+            $('.sortby')
+                .on('click', function() {
+                   // $('.callback .checkbox').checkbox( $(this).data('method') );
+                    var val = $('input[name=sort_by]:checked').val();
+                    if(val != 'name'){
+                        $("input[name=order][value=desc]").attr('checked', 'checked');
+
+                    }else{
+                        $("input[name=order][value=asc]").attr('checked', 'checked');
+                    }
+                })
+            ;
+
 
 
             $('#customSettings').on('click', function () {
