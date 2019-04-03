@@ -30,7 +30,6 @@
         <span class="text">Top 100 Women</span>
         <i class="dropdown icon"></i>
         <div class="menu">
-
             @foreach($nav['top100w'] as $label=>$link)
                 <a class="item {{$segments === $link . '/'  ? 'active' : '' }}" href="{{URL::to($link)}}">{{$label}}</a>
             @endforeach

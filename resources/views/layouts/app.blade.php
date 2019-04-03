@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136417921-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-136417921-1');
+    </script>
     <!-- Standard Meta -->
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>@yield('title') - CPH</title>
+    <title>@yield('title') - ChessHermit</title>
     <meta name="description" content="@yield('meta_description')">
     <meta name="keywords" content="@yield('meta_keywords')">
     @yield('header-metas')
@@ -26,7 +35,7 @@
 
 <div class="ui container">
     <div class="header_div">
-        <img src="{{URL::to('img/logo.jpg')}}" style="width: 300px">
+        <a href="/"><img src="{{URL::to('img/logo.jpg')}}" style="width: 300px"></a>
     </div>
     <div class="container">
         @yield('content')

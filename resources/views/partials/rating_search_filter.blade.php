@@ -154,14 +154,14 @@
             </div>
             <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="title[]" value="wfm" {{in_array('wfm',$qs['title']) ? 'checked' :''}}>
-                    <label>WFM</label>
+                    <input type="checkbox" name="title[]" value="wcm" {{in_array('wcm',$qs['title']) ? 'checked' :''}}>
+                    <label>WCM</label>
                 </div>
             </div>
             <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="title[]" value="wcm" {{in_array('wcm',$qs['title']) ? 'checked' :''}}>
-                    <label>WCM</label>
+                    <input type="checkbox" name="title[]" value="wfm" {{in_array('wfm',$qs['title']) ? 'checked' :''}}>
+                    <label>WFM</label>
                 </div>
             </div>
             <div class="field">

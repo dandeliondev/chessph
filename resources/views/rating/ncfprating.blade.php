@@ -25,10 +25,8 @@
             <th>Rating Standard</th>
             <th>Rating Rapid</th>
             <th>Rating Blitz</th>
-            <th>Title</th>
             <th>Gender</th>
             <th>Age</th>
-            <th>Birthdate</th>
             <th>NCFP ID</th>
             <th>Fide ID</th>
 
@@ -42,18 +40,28 @@
             @php
 
                 $ctr++;
+                $title ='';
+
+                if(trim($row->title) != ''){
+                    if(isset($title_colors[strtolower($row->title)]))
+                        $color = $title_colors[strtolower($row->title)];
+                    else
+                        $color = '';
+
+                    $title = '<div class="ui mini '.$color.' horizontal label">'.strtoupper($row->title).'</div>';
+                }
 
             @endphp
             <tr>
                 <td data-label="num">{{$ctr}}</td>
-                <td data-label="Name"><span style="font-weight: bold">{{ucwords(strtolower($row->lastname))}}</span>, {{ucwords(strtolower($row->firstname))}}</td>
+                <td data-label="Name"><span
+                            style="font-weight: bold">{!!$title !!} {{ucwords(strtolower($row->lastname))}}</span>, {{ucwords(strtolower($row->firstname))}}
+                </td>
                 <td data-label="Rating Standard">{{$row->standard}}</td>
                 <td data-label="Rating Rapid">{{$row->rapid}}</td>
                 <td data-label="Rating Blitz">{{$row->blitz}}</td>
-                <td data-label="Title">{{strtolower($row->title)}}</td>
                 <td data-label="Gender">{{strtolower($row->gender)}}</td>
                 <td data-label="Age">{{$row->age}}</td>
-                <td data-label="Birthdate">{{$row->birthdate}}</td>
                 <td data-label="NCFP ID">{{$row->ncfp_id}}</td>
                 <td data-label="FIDE ID">{{$row->fide_id}}</td>
 
@@ -72,8 +80,9 @@
         <div class="header">
             Disclaimer
         </div>
-        This is unofficial NCFP rating list, and should not be used as an official reference, you may find the NCFP official rating list on their official <a href="https://www.facebook.com/ncfpsecretariat2012/"
-                                                                                                                                                              target="_blank">facebook page</a>
+        This is unofficial NCFP rating list, and should not be used for official reference, you may find the NCFP
+        official rating list on their <a href="https://www.facebook.com/groups/569867936728217/"
+                                                  target="_blank">facebook page</a>
     </div>
 
 
@@ -87,21 +96,20 @@
                 .dropdown();
 
             $('.sortby')
-                .on('click', function() {
-                   // $('.callback .checkbox').checkbox( $(this).data('method') );
+                .on('click', function () {
+                    // $('.callback .checkbox').checkbox( $(this).data('method') );
                     var val = $('input[name=sort_by]:checked').val();
-                    if(val != 'name'){
+                    if (val != 'name') {
                         $("input[name=order][value=desc]").attr('checked', 'checked');
 
-                    }else{
+                    } else {
                         $("input[name=order][value=asc]").attr('checked', 'checked');
                     }
                 })
             ;
 
 
-
-            $('#customSettings').on('click', function () {
+            $('#customSettings').on('click touchstart', function () {
                 $('#frmSettings').slideToggle(100);
             });
 

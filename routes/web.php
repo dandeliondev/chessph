@@ -14,10 +14,11 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-
-Route::get('/', function () {
-    return redirect('rating/ncfp');
-});
+//
+//Route::get('/', function () {
+//    return redirect('rating/ncfp');
+//});
+Route::get('/', 'RatingController@index');
 Route::get('/rating/ncfp', 'RatingController@index');
 Route::get('/rating/ncfp/{cat}', 'RatingController@index');
 Route::get('/ncfp/top100/{cat}/{age}/{gender}', 'RatingController@index');
