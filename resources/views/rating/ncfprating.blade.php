@@ -80,7 +80,7 @@
         <div class="header">
             Disclaimer
         </div>
-        This is unofficial NCFP rating list, and should not be used for official reference, you may find the NCFP
+        This website is not affiliated with NCFP, the ratings listed here should not be used as an official reference, you may find the NCFP
         official rating list on their <a href="https://www.facebook.com/groups/569867936728217/"
                                                   target="_blank">facebook page</a>
     </div>
