@@ -112,6 +112,13 @@ class RatingController extends Controller
 			} elseif ($request->segment(4) == 'above') {
 				$users->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '>=', $age);
 				$header .= ' ' . $age . ' and above';
+			}elseif ($request->segment(4) == 'national-master') {
+				$users->whereRaw(DB::raw("(title IN ('nm','wnm'))"));
+				$header .= ' National Master' ;
+			}
+			elseif ($request->segment(4) == 'non-master') {
+				$users->whereRaw(DB::raw("title is NULL"));
+				$header .= ' Non-Master' ;
 			}
 
 			if ($gender != 'all') {
@@ -175,16 +182,18 @@ class RatingController extends Controller
 
 		$nav = [
 			'top100'  => [
-				'Overall'      => 'ncfp/top100/all',
-				'60 and above' => 'ncfp/top100/all/above/60',
-				'20 and below' => 'ncfp/top100/all/under/20',
-				'18 and below' => 'ncfp/top100/all/under/18',
-				'16 and below' => 'ncfp/top100/all/under/16',
-				'14 and below' => 'ncfp/top100/all/under/14',
-				'12 and below' => 'ncfp/top100/all/under/12',
-				'10 and below' => 'ncfp/top100/all/under/10',
-				'8 and below'  => 'ncfp/top100/all/under/8',
-				'6 and below'  => 'ncfp/top100/all/under/6',
+				'Overall'          => 'ncfp/top100/all',
+				'National Masters' => 'ncfp/top100/all/national-master',
+				'Non-Masters'      => 'ncfp/top100/all/non-master',
+				'60 and above'     => 'ncfp/top100/all/above/60',
+				'20 and below'     => 'ncfp/top100/all/under/20',
+				'18 and below'     => 'ncfp/top100/all/under/18',
+				'16 and below'     => 'ncfp/top100/all/under/16',
+				'14 and below'     => 'ncfp/top100/all/under/14',
+				'12 and below'     => 'ncfp/top100/all/under/12',
+				'10 and below'     => 'ncfp/top100/all/under/10',
+				'8 and below'      => 'ncfp/top100/all/under/8',
+				'6 and below'      => 'ncfp/top100/all/under/6',
 			],
 			'top100m' => [
 				'Overall'      => 'ncfp/top100/men',
