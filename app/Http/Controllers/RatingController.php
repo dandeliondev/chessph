@@ -54,7 +54,7 @@ class RatingController extends Controller
 			$users->orderBy($qs['sort_by'], $qs['order']);
 
 			if (trim($qs['search']) !== '') {
-				$users->whereRaw(DB::raw("(ncfp_id LIKE '%{$qs['search']}%'  OR firstname LIKE '%{$qs['search']}%' OR lastname LIKE '%{$qs['search']}%')"));
+				$users->whereRaw(DB::raw("(ncfp_id LIKE '%{$qs['search']}%'  OR firstname LIKE '%{$qs['search']}%' OR lastname LIKE '%{$qs['search']}%' OR CONCAT(firstname, ' ', lastname) LIKE '%{$qs['search']}%' OR CONCAT(lastname, ' ', firstname) LIKE '%{$qs['search']}%' OR CONCAT(lastname, ', ', firstname) LIKE '%{$qs['search']}%')"));
 
 			}
 
