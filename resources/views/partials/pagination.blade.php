@@ -6,7 +6,7 @@ $paginator->appends($_GET);
 ?>
 
 @if ($paginator->lastPage() > 1)
-    <div class="ui pagination menu">
+    <div class="ui pagination menu adjust_text20" id="main_pagination">
         <a class="item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}" href="{{ $paginator->url(1) }}">
             <<
         </a>
@@ -63,4 +63,3 @@ $paginator->appends($_GET);
 
     </div>
 @endif
-

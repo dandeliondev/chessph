@@ -36,13 +36,14 @@
 <div class="ui container">
     <div class="header_div">
         <a href="/"><img src="{{URL::to('img/logo_262_75.jpg')}}" style="width: 262px"></a>
+
     </div>
     <div class="container">
         @yield('content')
     </div>
 </div>
 <div class="footer">
-    <p>&copy; {{date('Y')}} copyright chesshermit.com
+    <p class="adjust_text16">&copy; {{date('Y')}} copyright chesshermit.com
         <br /> Developed by ddeluna
     </p>
 </div>

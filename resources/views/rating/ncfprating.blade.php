@@ -4,9 +4,8 @@
 @section('meta_keywords',  $meta_keywords)
 
 @section('content')
-
-
     @include('partials.nav_ncfp_rating')
+
 
     <h2 class="ui header">
         {{$header}}
@@ -17,7 +16,7 @@
     @endif
 
 
-    <table class="ui celled table">
+    <table class="ui celled table adjust_text20" id="table_rating">
         <thead>
         <tr>
             <th>#</th>
@@ -75,7 +74,7 @@
     @endif
 
     <br/><br/>
-    <div class="ui warning message">
+    <div class="ui warning message adjust_text20" id="disclaimer">
         <i class="close icon"></i>
         <div class="header">
             Disclaimer
