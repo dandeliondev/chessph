@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php" line="148" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php" line="149" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="improve header titles for SEO">
+    <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/nav_ncfp_rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/nav_ncfp_rating.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/pagination.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/pagination.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/sitemap/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sitemap/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,16 +57,16 @@
         <counts>
           <entry key="css" value="615" />
           <entry key="env" value="17" />
-          <entry key="php" value="11976" />
-          <entry key="txt" value="73" />
+          <entry key="php" value="11982" />
+          <entry key="txt" value="91" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Blade" value="5798" />
           <entry key="CSS" value="615" />
-          <entry key="PHP" value="6178" />
-          <entry key="PLAIN_TEXT" value="90" />
+          <entry key="PHP" value="6184" />
+          <entry key="PLAIN_TEXT" value="108" />
         </counts>
       </usages-collector>
     </session>
@@ -146,8 +142,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="186" column="42" lean-forward="true" selection-start-line="186" selection-start-column="42" selection-end-line="186" selection-end-column="42" />
+            <state relative-caret-position="293">
+              <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
               <folding>
                 <element signature="e#40#53#0#PHP" expanded="true" />
               </folding>
@@ -180,7 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>label</find>
       <find>main</find>
       <find>form</find>
       <find>desc</find>
@@ -210,6 +205,7 @@
       <find>2019-04-19T07:22:46+00:00</find>
       <find>main.</find>
       <find>rating/ncfp</find>
+      <find>keywords</find>
     </findStrings>
     <replaceStrings>
       <replace>!=</replace>
@@ -510,7 +506,7 @@
       <workItem from="1554310029689" duration="323000" />
       <workItem from="1554311202367" duration="762000" />
       <workItem from="1554516356970" duration="494000" />
-      <workItem from="1555659090754" duration="22554000" />
+      <workItem from="1555659090754" duration="23195000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1552667614679</created>
@@ -603,11 +599,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555685981523</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="sep optimization">
+      <created>1555691494738</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1555691494738</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122398000" />
+    <option name="totallyTimeSpent" value="123039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -670,7 +673,8 @@
     <MESSAGE value="add sitemap" />
     <MESSAGE value="improve mobile compatibility" />
     <MESSAGE value="improve header titles for SEO" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve header titles for SEO" />
+    <MESSAGE value="sep optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="sep optimization" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_12_021443_create_ratings_table.php">
@@ -809,8 +813,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="186" column="42" lean-forward="true" selection-start-line="186" selection-start-column="42" selection-end-line="186" selection-end-column="42" />
+        <state relative-caret-position="293">
+          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
           <folding>
             <element signature="e#40#53#0#PHP" expanded="true" />
           </folding>

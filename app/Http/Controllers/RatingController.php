@@ -36,6 +36,7 @@ class RatingController extends Controller
 		$keywords[] = 'ncfp';
 		$keywords[] = 'rating';
 		$keywords[] = 'national chess federation of philippines';
+		$keywords[] = 'chess';
 		$keywords[] = 'top players';
 
 		$titles = ['un', 'nm', 'cm', 'fm', 'im', 'gm', 'wfm', 'wcm', 'wim', 'wgm'];
