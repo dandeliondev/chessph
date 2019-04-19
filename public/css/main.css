@@ -87,7 +87,7 @@
 }
 
 
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 450px) {
     body {
         /*background-color: lightblue;*/
 
@@ -102,6 +102,9 @@
     #mobile_nav {
         display: block;
 
+    }
+    .adjust_text24{
+        font-size: 24px !important;
     }
     .adjust_text20{
         font-size: 20px !important;

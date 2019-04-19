@@ -7,9 +7,9 @@
     @include('partials.nav_ncfp_rating')
 
 
-    <h2 class="ui header">
+    <h2 class="ui header adjust_text24">
         {{$header}}
-        <div class="sub header">{{$subheader}}</div>
+        <div class="sub header adjust_text20">{{$subheader}}</div>
     </h2>
     @if($filter == true)
         @include('partials.rating_search_filter')
@@ -47,7 +47,7 @@
                     else
                         $color = '';
 
-                    $title = '<div class="ui mini '.$color.' horizontal label">'.strtoupper($row->title).'</div>';
+                    $title = '<div class="ui mini '.$color.' horizontal label player_title">'.strtoupper($row->title).'</div>';
                 }
 
             @endphp
@@ -111,6 +111,20 @@
             $('#customSettings').on('click touchstart', function () {
                 $('#frmSettings').slideToggle(100);
             });
+
+            $(window).resize(function(){
+                if ($(window).width() < 450) {
+                    $('.player_title').removeClass('mini');
+                    $('.player_title').addClass('large');
+                }
+                else {
+                    $('.player_title').removeClass('large');
+                    $('.player_title').addClass('mini');
+
+                }
+            });
+
+
 
 
         });

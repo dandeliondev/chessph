@@ -43,7 +43,7 @@
     </div>
 </div>
 <div class="footer">
-    <p class="adjust_text16">&copy; {{date('Y')}} copyright chesshermit.com
+    <p class="adjust_text20">&copy; {{date('Y')}} copyright chesshermit.com
         <br /> Developed by ddeluna
     </p>
 </div>
