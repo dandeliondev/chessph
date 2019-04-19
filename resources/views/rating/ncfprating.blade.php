@@ -94,6 +94,8 @@
             $('.ui.dropdown')
                 .dropdown();
 
+            screen_adjust();
+
             $('.sortby')
                 .on('click', function () {
                     // $('.callback .checkbox').checkbox( $(this).data('method') );
@@ -113,21 +115,23 @@
             });
 
             $(window).resize(function(){
-                if ($(window).width() < 450) {
-                    $('.player_title').removeClass('mini');
-                    $('.player_title').addClass('large');
-                }
-                else {
-                    $('.player_title').removeClass('large');
-                    $('.player_title').addClass('mini');
+                screen_adjust();
 
-                }
             });
 
-
-
-
         });
+
+        function screen_adjust(){
+            if ($(window).width() < 450) {
+                $('.player_title').removeClass('mini');
+                $('.player_title').addClass('large');
+            }
+            else {
+                $('.player_title').removeClass('large');
+                $('.player_title').addClass('mini');
+
+            }
+        }
 
     </script>
 @endsection
