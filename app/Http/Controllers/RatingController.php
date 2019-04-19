@@ -24,6 +24,8 @@ class RatingController extends Controller
 	public function index(Request $request)
 	{
 		//$current_segment = $this->current_segment();
+
+
 		$nav      = $this->nav($request);
 		$segments = '';
 		foreach ($request->segments() as $segment) {
@@ -96,6 +98,16 @@ class RatingController extends Controller
 
 			$list = $users->paginate(100);
 
+			if ($request->input('search') )
+			{
+
+			}else{
+				$lastKey = $list->keys()->last();
+				$header .= strtolower(' (' . $list{'0'}->lastname. ' - ' . $list{$lastKey}->lastname. ')');
+			}
+
+
+
 		} else {
 			$paginate = false;
 			$filter   = false;
@@ -108,10 +120,10 @@ class RatingController extends Controller
 
 			if ($request->segment(4) == 'under') {
 				$users->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', $age);
-				$header .= ' ' . $age . ' and below ';
+				$header .= ' (' . $age . ' and below) ';
 			} elseif ($request->segment(4) == 'above') {
 				$users->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '>=', $age);
-				$header .= ' ' . $age . ' and above';
+				$header .= ' (' . $age . ' and above' . ')';
 			}elseif ($request->segment(4) == 'national-master') {
 				$users->whereRaw(DB::raw("(title IN ('nm','wnm'))"));
 				$header .= ' National Master' ;
@@ -119,7 +131,10 @@ class RatingController extends Controller
 			elseif ($request->segment(4) == 'non-master') {
 				$users->whereRaw(DB::raw("title is NULL"));
 				$header .= ' Non-Master' ;
+			}else{
+				$header .= ' test' ;
 			}
+
 
 			if ($gender != 'all') {
 				if ($gender == 'women') {

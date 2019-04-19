@@ -54,7 +54,7 @@
             <tr>
                 <td data-label="num">{{$ctr}}</td>
                 <td data-label="Name"><span
-                            style="font-weight: bold">{!!$title !!} {{ucwords(strtolower($row->lastname))}}</span>, {{ucwords(strtolower($row->firstname))}}
+                            style="font-weight: bold">{!!$title !!} {{strtoupper($row->lastname)}}</span>, {{ucwords(strtolower($row->firstname))}}
                 </td>
                 <td data-label="Rating Standard">{{$row->standard}}</td>
                 <td data-label="Rating Rapid">{{$row->rapid}}</td>
