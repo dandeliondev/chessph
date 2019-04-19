@@ -32,6 +32,12 @@ class RatingController extends Controller
 			$segments .= $segment . '/';
 		}
 
+		$names      = [];
+		$keywords[] = 'ncfp';
+		$keywords[] = 'rating';
+		$keywords[] = 'national chess federation of philippines';
+		$keywords[] = 'top players';
+
 		$titles = ['un', 'nm', 'cm', 'fm', 'im', 'gm', 'wfm', 'wcm', 'wim', 'wgm'];
 		$qs     = [
 			'search'     => $request->input('search') ?? '',
@@ -98,12 +104,18 @@ class RatingController extends Controller
 
 			$list = $users->paginate(100);
 
-			if ($request->input('search') )
-			{
+			if ($request->input('search')) {
 
-			}else{
+			} else {
 				$lastKey = $list->keys()->last();
-				$header .= strtolower(' (' . $list{'0'}->lastname. ' - ' . $list{$lastKey}->lastname. ')');
+				if (isset($list{'0'})) {
+					$header .= strtolower(' (' . $list{'0'}->lastname . ' - ' . $list{$lastKey}->lastname . ')');
+				}
+
+			}
+			foreach ($list as $row) {
+				$keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
+				$names[]    = strtolower($row->lastname . ' ' . $row->firstname);
 			}
 
 
@@ -118,56 +130,53 @@ class RatingController extends Controller
 			$gender = $request->segment(3);
 			$header = 'NCFP Rating Top 100';
 
+			if ($gender != 'all') {
+				if ($gender == 'women') {
+					$users->where('gender', 'f');
+					$header .= ' Women ';
+				} elseif ($gender == 'men') {
+					$users->where('gender', NULL);
+					$header .= ' Men';
+				}
+			}
+
 			if ($request->segment(4) == 'under') {
 				$users->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', $age);
 				$header .= ' (' . $age . ' and below) ';
 			} elseif ($request->segment(4) == 'above') {
 				$users->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '>=', $age);
 				$header .= ' (' . $age . ' and above' . ')';
-			}elseif ($request->segment(4) == 'national-master') {
+			} elseif ($request->segment(4) == 'national-master') {
 				$users->whereRaw(DB::raw("(title IN ('nm','wnm'))"));
-				$header .= ' National Master' ;
-			}
-			elseif ($request->segment(4) == 'non-master') {
+				$header .= ' National Master';
+			} elseif ($request->segment(4) == 'non-master') {
 				$users->whereRaw(DB::raw("title is NULL"));
-				$header .= ' Non-Master' ;
-			}else{
-				$header .= ' test' ;
+				$header .= ' Non-Master';
 			}
 
-
-			if ($gender != 'all') {
-				if ($gender == 'women') {
-					$users->where('gender', 'f');
-					$header .= ' (Women) ';
-				} elseif ($gender == 'men') {
-					$users->where('gender', NULL);
-					$header .= ' (Men)';
-				}
-			}
 
 			$users->limit(100);
 
 			$list = $users->get();
 
+
+
+			$rank = 1;
+			foreach ($list as $row) {
+				$keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
+				$names[]    = $rank . '. ' . ucwords(strtolower($row->lastname)) . ' ' . ucwords(strtolower($row->firstname));
+				$rank++;
+			}
+
 		}
 
-		$keywords[] = 'ncfp';
-		$keywords[] = 'rating';
-		$keywords[] = 'national chess federation of philippines';
-		$keywords[] = 'top players';
-		$names      = [];
-
-		foreach ($list as $row) {
-			$keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
-			$names[]    = strtolower($row->lastname . ' ' . $row->firstname);
-		}
 
 		$keywords = array_slice($keywords, 0, 10);
 		$names    = array_slice($names, 0, 10);
 
-		$subheader        = 'Based from NCFP March 1, 2019 release.';
-		$meta_description = $header . ' ' . $subheader . ' ' . implode(', ', $names);
+		$subheader = 'Based from NCFP March 1, 2019 release.';
+
+		$meta_description = $header . ' ' . implode(', ', $names);
 		$meta_keywords    = '' . implode(',', $keywords);
 		$title            = strtolower($header);
 

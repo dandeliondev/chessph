@@ -1,5 +1,5 @@
 <div class="ui menu adjust_text20" id="main_nav">
-    <a class="item {{$segments ===  'rating/ncfp/'  ? 'active' : '' }}" href="{{URL::to('rating/ncfp')}}">
+    <a class="item {{$segments ===  'ncfp/rating/'  ? 'active' : '' }}" href="{{URL::to('ncfp/rating')}}">
         Ratings
     </a>
     <div class="ui pointing dropdown link item">
