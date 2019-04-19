@@ -79,15 +79,30 @@
         <div class="header">
             Disclaimer
         </div>
-        This website is not affiliated with NCFP, the ratings listed here should not be used as an official reference, you may find the NCFP
+        This website is not affiliated with NCFP, the ratings listed here should not be used as an official reference,
+        you may find the NCFP
         official rating list on their <a href="https://www.facebook.com/groups/569867936728217/"
-                                                  target="_blank">facebook page</a>
+                                         target="_blank">facebook page</a>
     </div>
 
 
 
 @endsection
 @section('footer-assets')
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "{{ URL::to('/') }}/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ URL::to('/ncfp/rating?search=') }}{search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+
+
+    </script>
     <script>
 
         $(document).ready(function () {
@@ -114,21 +129,27 @@
                 $('#frmSettings').slideToggle(100);
             });
 
-            $(window).resize(function(){
+            $(window).resize(function () {
                 screen_adjust();
 
             });
 
         });
 
-        function screen_adjust(){
+        function screen_adjust() {
             if ($(window).width() < 450) {
                 $('.player_title').removeClass('mini');
                 $('.player_title').addClass('large');
+
+                $('.social_icons').removeClass('large');
+                $('.social_icons').addClass('huge');
             }
             else {
                 $('.player_title').removeClass('large');
                 $('.player_title').addClass('mini');
+
+                $('.social_icons').removeClass('huge');
+                $('.social_icons').addClass('large');
 
             }
         }

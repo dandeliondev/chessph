@@ -46,6 +46,9 @@
     <p class="adjust_text20">&copy; {{date('Y')}} copyright chesshermit.com
         <br /> Developed by ddeluna
     </p>
+    <p>
+        <a href="https://www.facebook.com/groups/931932140310878/" target="_blank"><i class="facebook large icon social_icons"></i></a>
+    </p>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
