@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,13 +56,13 @@
         <counts>
           <entry key="css" value="615" />
           <entry key="env" value="17" />
-          <entry key="php" value="11291" />
+          <entry key="php" value="11331" />
           <entry key="txt" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="5446" />
+          <entry key="Blade" value="5486" />
           <entry key="CSS" value="615" />
           <entry key="PHP" value="5845" />
           <entry key="PLAIN_TEXT" value="61" />
@@ -111,11 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1449">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+            <state relative-caret-position="323">
+              <caret line="98" column="24" lean-forward="true" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -129,11 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="26" selection-start-column="26" selection-end-column="26" />
+            <state relative-caret-position="253">
+              <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -237,9 +233,9 @@
         <option value="$PROJECT_DIR$/resources/views/partials/pagination.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/nav_ncfp_rating.blade.php" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
-        <option value="$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php" />
       </list>
     </option>
   </component>
@@ -500,7 +496,7 @@
       <workItem from="1554310029689" duration="323000" />
       <workItem from="1554311202367" duration="762000" />
       <workItem from="1554516356970" duration="494000" />
-      <workItem from="1555659090754" duration="13750000" />
+      <workItem from="1555659090754" duration="14325000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1552667614679</created>
@@ -565,11 +561,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555681201436</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="improve mobile compatibility">
+      <created>1555682652856</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1555682652856</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113594000" />
+    <option name="totallyTimeSpent" value="114169000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -743,13 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1449">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="889">
@@ -769,8 +765,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" selection-start-column="26" selection-end-column="26" />
+        <state relative-caret-position="253">
+          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="98" column="24" lean-forward="true" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
         </state>
       </provider>
     </entry>
