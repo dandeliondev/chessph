@@ -57,17 +57,17 @@ class RatingController extends Controller
 		//$users->crossJoin(DB::raw('(select @rownum := 0) r'));
 
 		if ($request->segment(1) == '') {
-			$header = 'NCFP Rating';
+			$header   = 'NCFP Rating';
 			$paginate = false;
 			$filter   = true;
 
-			$top_gainers = DB::table('cph_ratings');
-			$top_all     = DB::table('cph_ratings');
-			$top_women     = DB::table('cph_ratings');
-			$top_nm     = DB::table('cph_ratings');
-			$top_untitled     = DB::table('cph_ratings');
-			$top_juniors     = DB::table('cph_ratings');
-			$top_kiddies     = DB::table('cph_ratings');
+			$top_gainers  = DB::table('cph_ratings');
+			$top_all      = DB::table('cph_ratings');
+			$top_women    = DB::table('cph_ratings');
+			$top_nm       = DB::table('cph_ratings');
+			$top_untitled = DB::table('cph_ratings');
+			$top_juniors  = DB::table('cph_ratings');
+			$top_kiddies  = DB::table('cph_ratings');
 
 			$top_gainers->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 			$top_all->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
@@ -79,13 +79,12 @@ class RatingController extends Controller
 
 			$top_women->where('gender', 'f');
 			$top_nm->where('title', 'nm');
-			$top_untitled->where('title', null);
+			$top_untitled->where('title', NULL);
 
 			$top_juniors->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '>=', 13);
 			$top_juniors->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', 20);
 
 			$top_kiddies->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', 12);
-
 
 
 			$top_gainers->orderBy('increase', 'desc');
@@ -104,13 +103,13 @@ class RatingController extends Controller
 			$top_juniors->limit(10);
 			$top_kiddies->limit(10);
 
-			$list_top_gainers = $top_gainers->get();
-			$list_top_all     = $top_all->get();
-			$list_top_women     = $top_women->get();
-			$list_top_nm     = $top_nm->get();
-			$list_top_untitled     = $top_untitled->get();
-			$list_top_juniors     = $top_juniors->get();
-			$list_top_kiddies     = $top_kiddies->get();
+			$list_top_gainers  = $top_gainers->get();
+			$list_top_all      = $top_all->get();
+			$list_top_women    = $top_women->get();
+			$list_top_nm       = $top_nm->get();
+			$list_top_untitled = $top_untitled->get();
+			$list_top_juniors  = $top_juniors->get();
+			$list_top_kiddies  = $top_kiddies->get();
 
 
 			$rank = 1;
@@ -296,7 +295,7 @@ class RatingController extends Controller
 
 		$meta_description = $header . ' ' . implode(', ', $names);
 		$meta_keywords    = '' . implode(',', $keywords);
-		$title            = strtolower($header);
+		$title            = ucwords(strtolower($header));
 
 		$data = [
 			'paginate'         => $paginate,
