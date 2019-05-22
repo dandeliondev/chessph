@@ -26,7 +26,6 @@ class RatingController extends Controller
 	{
 		//$current_segment = $this->current_segment();
 
-
 		$nav      = $this->nav($request);
 		$segments = '';
 		foreach ($request->segments() as $segment) {
@@ -54,10 +53,112 @@ class RatingController extends Controller
 			'title'      => $request->input('title') ?? $titles,
 		];
 		$users  = DB::table('cph_ratings');
-		$users->select(DB::raw('*,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+		$users->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 		//$users->crossJoin(DB::raw('(select @rownum := 0) r'));
 
-		if ($request->segment(2) != 'top100') {
+		if ($request->segment(1) == '') {
+			$header = 'NCFP Rating';
+			$paginate = false;
+			$filter   = true;
+
+			$top_gainers = DB::table('cph_ratings');
+			$top_all     = DB::table('cph_ratings');
+			$top_women     = DB::table('cph_ratings');
+			$top_nm     = DB::table('cph_ratings');
+			$top_untitled     = DB::table('cph_ratings');
+			$top_juniors     = DB::table('cph_ratings');
+			$top_kiddies     = DB::table('cph_ratings');
+
+			$top_gainers->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_all->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_women->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_nm->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_untitled->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_juniors->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_kiddies->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+
+			$top_women->where('gender', 'f');
+			$top_nm->where('title', 'nm');
+			$top_untitled->where('title', null);
+
+			$top_juniors->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '>=', 13);
+			$top_juniors->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', 20);
+
+			$top_kiddies->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', 12);
+
+
+
+			$top_gainers->orderBy('increase', 'desc');
+			$top_all->orderBy('standard', 'desc');
+			$top_women->orderBy('standard', 'desc');
+			$top_nm->orderBy('standard', 'desc');
+			$top_untitled->orderBy('standard', 'desc');
+			$top_juniors->orderBy('standard', 'desc');
+			$top_kiddies->orderBy('standard', 'desc');
+
+			$top_gainers->limit(10);
+			$top_all->limit(10);
+			$top_women->limit(10);
+			$top_nm->limit(10);
+			$top_untitled->limit(10);
+			$top_juniors->limit(10);
+			$top_kiddies->limit(10);
+
+			$list_top_gainers = $top_gainers->get();
+			$list_top_all     = $top_all->get();
+			$list_top_women     = $top_women->get();
+			$list_top_nm     = $top_nm->get();
+			$list_top_untitled     = $top_untitled->get();
+			$list_top_juniors     = $top_juniors->get();
+			$list_top_kiddies     = $top_kiddies->get();
+
+
+			$rank = 1;
+			foreach ($list_top_all as $row) {
+				$keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
+				$names[]    = $rank . '. ' . ucwords(strtolower($row->lastname)) . ' ' . ucwords(strtolower($row->firstname));
+				$rank++;
+			}
+
+			$lists = [
+				0 => [
+					'header'    => 'Top 10 Overall',
+					'subheader' => '',
+					'list'      => $list_top_all,
+				],
+				1 => [
+					'header'    => 'Top 10 Women',
+					'subheader' => '',
+					'list'      => $list_top_women,
+				],
+				2 => [
+					'header'    => 'Top 10 National Masters',
+					'subheader' => '',
+					'list'      => $list_top_nm,
+				],
+				3 => [
+					'header'    => 'Top 10 Non-Masters',
+					'subheader' => '',
+					'list'      => $list_top_untitled,
+				],
+				4 => [
+					'header'    => 'Top 10 Juniors',
+					'subheader' => '',
+					'list'      => $list_top_juniors,
+				],
+				5 => [
+					'header'    => 'Top 10 Kiddies',
+					'subheader' => '',
+					'list'      => $list_top_kiddies,
+				],
+				6 => [
+					'header'    => 'Top 10 Highest Rating Increase',
+					'subheader' => '',
+					'list'      => $list_top_gainers,
+				]
+			];
+
+		} elseif ($request->segment(2) != 'top100') {
 			$paginate = true;
 			$filter   = true;
 			$header   = 'NCFP Rating List';
@@ -122,6 +223,14 @@ class RatingController extends Controller
 			}
 
 
+			$lists = [
+				0 => [
+					'header'    => '',
+					'subheader' => '',
+					'list'      => $list,
+				]
+			];
+
 		} else {
 			$paginate = false;
 			$filter   = false;
@@ -169,13 +278,21 @@ class RatingController extends Controller
 				$rank++;
 			}
 
+			$lists = [
+				0 => [
+					'header'    => '',
+					'subheader' => '',
+					'list'      => $list,
+				]
+			];
+
 		}
 
 
 		$keywords = array_slice($keywords, 0, 10);
 		$names    = array_slice($names, 0, 10);
 
-		$subheader = 'Based from NCFP March 1, 2019 release.';
+		$subheader = 'Based from NCFP May 1, 2019 release.';
 
 		$meta_description = $header . ' ' . implode(', ', $names);
 		$meta_keywords    = '' . implode(',', $keywords);
@@ -186,7 +303,7 @@ class RatingController extends Controller
 			'nav'              => $nav,
 			'qs'               => $qs,
 			'filter'           => $filter,
-			'list'             => $list,
+			'lists'            => $lists,
 			'page'             => $request->input('page') ?? '1',
 			'segments'         => $segments,
 			'header'           => $header,
@@ -328,7 +445,7 @@ class RatingController extends Controller
 			$rapid_prov    = NULL;
 			$blitz_prov    = NULL;
 
-			if (isset($data[9]) &&  trim($data[9]) != '') {
+			if (isset($data[9]) && trim($data[9]) != '') {
 				$standard_prov_det = explode('/', $data[9]);
 				$standard_prov     = (integer)$standard_prov_det[0];
 			}

@@ -1,4 +1,4 @@
-<form class="adjust_text20" method="get" action="">
+<form class="adjust_text20" method="get" action="/ncfp/rating">
     <div class="row">
         <div class="five wide column">
             <div class="ui action input">

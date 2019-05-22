@@ -1,4 +1,7 @@
 <div class="ui menu adjust_text20" id="main_nav">
+    <a class="item {{$segments ===  ''  ? 'active' : '' }}" href="{{URL::to('')}}">
+        Home
+    </a>
     <a class="item {{$segments ===  'ncfp/rating/'  ? 'active' : '' }}" href="{{URL::to('ncfp/rating')}}">
         Ratings
     </a>
