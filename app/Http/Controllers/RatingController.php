@@ -272,8 +272,8 @@ class RatingController extends Controller
 	public function store_ratings()
 	{
 
-		$file_n   = Storage::url('rating_march_2019.csv');
-		$file_n = Storage::disk('local')->path('rating_march_2019.csv');;
+		//$file_n   = Storage::url('rating_march_2019.csv');
+		//$file_n = Storage::disk('local')->path('rating_march_2019.csv');;
 		$file     = fopen($file_n, "r");
 		$all_data = array();
 		$array    = array();
