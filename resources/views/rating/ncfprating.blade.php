@@ -49,6 +49,39 @@
 
                     $title = '<div class="ui mini '.$color.' horizontal label player_title">'.strtoupper($row->title).'</div>';
                 }
+                $standard_diff_disp = '';
+                $rapid_diff_disp = '';
+                $blitz_diff_disp = '';
+
+                $standard_diff = $row->standard - $row->standard_prev;
+                $rapid_diff = $row->rapid - $row->rapid_prev;
+                $blitz_diff = $row->blitz - $row->blitz_prev;
+
+                if($standard_diff <> 0){
+                    if($standard_diff > 0){
+                        $standard_diff_disp = '<div class="ui horizontal label" title="increase from previous rating">(+'.$standard_diff.')</div>';
+                    }else{
+                        $standard_diff_disp = '<div class="ui horizontal label" title="decrease from previous rating">('.$standard_diff.')</div>';
+                    }
+                }
+
+                if($rapid_diff <> 0){
+                    if($rapid_diff > 0){
+                        $rapid_diff_disp = '<div class="ui horizontal label" title="increase from previous rating">(+'.$rapid_diff.')</div>';
+                    }else{
+                        $rapid_diff_disp = '<div class="ui horizontal label" title="decrease from previous rating">('.$rapid_diff.')</div>';
+                    }
+                }
+
+                if($blitz_diff <> 0){
+                    if($blitz_diff > 0){
+                        $blitz_diff_disp = '<div class="ui horizontal label" title="increase from previous rating">(+'.$blitz_diff.')</div>';
+                    }else{
+                        $blitz_diff_disp = '<div class="ui horizontal label" title="decrease from previous rating">('.$blitz_diff.')</div>';
+                    }
+                }
+
+
 
             @endphp
             <tr>
@@ -56,7 +89,7 @@
                 <td data-label="Name"><span
                             style="font-weight: bold">{!!$title !!} {{strtoupper($row->lastname)}}</span>, {{ucwords(strtolower($row->firstname))}}
                 </td>
-                <td data-label="Rating Standard">{{$row->standard}}</td>
+                <td data-label="Rating Standard">{{$row->standard}} {!!$standard_diff_disp!!}</td>
                 <td data-label="Rating Rapid">{{$row->rapid}}</td>
                 <td data-label="Rating Blitz">{{$row->blitz}}</td>
                 <td data-label="Gender">{{strtolower($row->gender)}}</td>
@@ -100,6 +133,12 @@
             "query-input": "required name=search_term_string"
         }
     }
+
+
+
+
+
+
 
 
     </script>
