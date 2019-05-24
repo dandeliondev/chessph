@@ -394,6 +394,7 @@ class RatingController extends Controller
 		$array    = array();
 		$ctr      = 0;
 		$arr_int  = [6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 19];
+		$inserts = [];
 		while (($data = fgetcsv($file, 200, ",")) !== false) {
 			if ($ctr == 0) {
 				$ctr++;
@@ -460,7 +461,7 @@ class RatingController extends Controller
 			}
 
 
-			if ($users === NULL) {
+			if ($users->count() === 0) {
 				$insert = [
 					'ncfp_id'        => trim($data[0]) != '' ? trim($data[0]) : NULL,
 					//'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
@@ -487,7 +488,7 @@ class RatingController extends Controller
 					'status'         => $status,
 					'created_at'     => date('Y-m-d H:i:s'),
 				];
-
+				$inserts[] = $insert;
 				DB::table('cph_ratings')->insert($insert);
 			} else {
 				$update = [
@@ -516,7 +517,7 @@ class RatingController extends Controller
 					'status'         => $status,
 					'updated_at'     => date('Y-m-d H:i:s'),
 				];
-				DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
+				//DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
 			}
 		}
 
