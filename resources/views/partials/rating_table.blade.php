@@ -46,25 +46,25 @@
 
             if($standard_diff <> 0){
                 if($standard_diff > 0){
-                    $standard_diff_disp = '<div class="ui horizontal label" title="increase from previous rating">(+'.$standard_diff.')</div>';
+                    $standard_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating">+'.$standard_diff.'</div>';
                 }else{
-                    $standard_diff_disp = '<div class="ui horizontal label" title="decrease from previous rating">('.$standard_diff.')</div>';
+                    $standard_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating">('.$standard_diff.')</div>';
                 }
             }
 
             if($rapid_diff <> 0){
                 if($rapid_diff > 0){
-                    $rapid_diff_disp = '<div class="ui horizontal label" title="increase from previous rating">(+'.$rapid_diff.')</div>';
+                    $rapid_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating">+'.$rapid_diff.'</div>';
                 }else{
-                    $rapid_diff_disp = '<div class="ui horizontal label" title="decrease from previous rating">('.$rapid_diff.')</div>';
+                    $rapid_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating">'.$rapid_diff.'</div>';
                 }
             }
 
             if($blitz_diff <> 0){
                 if($blitz_diff > 0){
-                    $blitz_diff_disp = '<div class="ui horizontal label" title="increase from previous rating">(+'.$blitz_diff.')</div>';
+                    $blitz_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating">+'.$blitz_diff.'</div>';
                 }else{
-                    $blitz_diff_disp = '<div class="ui horizontal label" title="decrease from previous rating">('.$blitz_diff.')</div>';
+                    $blitz_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating">'.$blitz_diff.'</div>';
                 }
             }
 

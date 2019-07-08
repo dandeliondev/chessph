@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,13 +61,13 @@
         <counts>
           <entry key="css" value="615" />
           <entry key="env" value="17" />
-          <entry key="php" value="14351" />
+          <entry key="php" value="14410" />
           <entry key="txt" value="129" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="6509" />
+          <entry key="Blade" value="6568" />
           <entry key="CSS" value="615" />
           <entry key="PHP" value="7842" />
           <entry key="PLAIN_TEXT" value="146" />
@@ -132,20 +131,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_table.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+            <state relative-caret-position="500">
+              <caret line="66" column="86" selection-start-line="66" selection-start-column="86" selection-end-line="66" selection-end-column="86" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+            <state relative-caret-position="63">
+              <caret line="72" column="80" selection-start-line="72" selection-start-column="72" selection-end-line="72" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -230,7 +229,6 @@
         <option value="$PROJECT_DIR$/resources/views/sitemap/main.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_23_012725_alter_cph_ratings.php" />
         <option value="$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/nav_ncfp_rating.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
@@ -238,6 +236,7 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_07_08_225137_alter_cph_ratings_add_prev_rating.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" />
+        <option value="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" />
       </list>
     </option>
   </component>
@@ -417,7 +416,7 @@
       <workItem from="1558597427348" duration="3671000" />
       <workItem from="1558712712852" duration="2348000" />
       <workItem from="1558752613036" duration="24000" />
-      <workItem from="1562597219282" duration="4908000" />
+      <workItem from="1562597219282" duration="5964000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1552667614679</created>
@@ -566,11 +565,25 @@
       <option name="project" value="LOCAL" />
       <updated>1558714279216</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="updates">
+      <created>1562602535352</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1562602535352</updated>
+    </task>
+    <task id="LOCAL-00023" summary="updates">
+      <created>1562603629868</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1562603629868</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147434000" />
+    <option name="totallyTimeSpent" value="148490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -762,13 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_table.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_23_014920_alter_cph_ratings_add_960.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
@@ -806,8 +812,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+        <state relative-caret-position="63">
+          <caret line="72" column="80" selection-start-line="72" selection-start-column="72" selection-end-line="72" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_table.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="66" column="86" selection-start-line="66" selection-start-column="86" selection-end-line="66" selection-end-column="86" />
         </state>
       </provider>
     </entry>
