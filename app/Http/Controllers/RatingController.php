@@ -68,6 +68,7 @@ class RatingController extends Controller
 			$top_untitled = DB::table('cph_ratings');
 			$top_juniors  = DB::table('cph_ratings');
 			$top_kiddies  = DB::table('cph_ratings');
+			$top_title    = DB::table('cph_ratings');
 
 			$top_gainers->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 			$top_all->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
@@ -76,6 +77,7 @@ class RatingController extends Controller
 			$top_untitled->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 			$top_juniors->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 			$top_kiddies->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
+			$top_title->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 
 			$top_women->where('gender', 'f');
 			$top_nm->where('title', 'nm');
@@ -86,6 +88,7 @@ class RatingController extends Controller
 
 			$top_kiddies->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', 12);
 
+			$top_title->where(DB::raw('title'), '<>', DB::raw('title_prev'));
 
 			$top_gainers->orderBy('increase', 'desc');
 			$top_all->orderBy('standard', 'desc');
@@ -94,6 +97,8 @@ class RatingController extends Controller
 			$top_untitled->orderBy('standard', 'desc');
 			$top_juniors->orderBy('standard', 'desc');
 			$top_kiddies->orderBy('standard', 'desc');
+			$top_title->orderBy('standard', 'desc');
+
 
 			$top_gainers->limit(10);
 			$top_all->limit(10);
@@ -102,6 +107,7 @@ class RatingController extends Controller
 			$top_untitled->limit(10);
 			$top_juniors->limit(10);
 			$top_kiddies->limit(10);
+			$top_title->limit(1);
 
 			$list_top_gainers  = $top_gainers->get();
 			$list_top_all      = $top_all->get();
@@ -110,6 +116,7 @@ class RatingController extends Controller
 			$list_top_untitled = $top_untitled->get();
 			$list_top_juniors  = $top_juniors->get();
 			$list_top_kiddies  = $top_kiddies->get();
+			$list_top_title    = $top_title->get();
 
 
 			$rank = 1;
@@ -151,6 +158,11 @@ class RatingController extends Controller
 					'list'      => $list_top_kiddies,
 				],
 				6 => [
+					'header'    => 'Latest Title Awardee',
+					'subheader' => '',
+					'list'      => $list_top_title,
+				],
+				7 => [
 					'header'    => 'Top 10 Highest Rating Increase',
 					'subheader' => '',
 					'list'      => $list_top_gainers,
@@ -386,21 +398,28 @@ class RatingController extends Controller
 
 	public function store_ratings()
 	{
+
+//	STEP 1
+//  UPDATE cph_ratings
+//	SET title_prev = title,standard_prev=standard,rapid_prev=rapid,blitz_prev=blitz
+
+
 		ini_set('max_execution_time', 3600);
 		$file_n = Storage::url('rating_may_2019.csv');
-		$file_n = Storage::disk('local')->path('rating_may_2019.csv');;
+		$file_n = Storage::disk('local')->path('rating_july_2019.csv');;
 		$file     = fopen($file_n, "r");
 		$all_data = array();
 		$array    = array();
 		$ctr      = 0;
 		$arr_int  = [6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 19];
-		$inserts = [];
+		$inserts  = [];
 		while (($data = fgetcsv($file, 200, ",")) !== false) {
 			if ($ctr == 0) {
 				$ctr++;
 				continue;
 			}
 			$byear   = NULL;
+			$bdate   = NULL;
 			$fide_id = NULL;
 			$status  = 2;
 			$gender  = NULL;
@@ -414,16 +433,27 @@ class RatingController extends Controller
 
 			}
 
-			if (isset($data[20])) {
-				$byear = $data[20];
-				if (trim($byear) == '') {
-					$byear = NULL;
+			if (isset($data[19])) {
+				$bdate = $data[19];
+				if (trim($bdate) == '') {
+					$bdate = NULL;
+				} else {
+					$byear = date('Y', strtotime($bdate));
+					$bdate = date('Y-m-d', strtotime($bdate));
 				}
 			}
 
-			if (isset($data[21])) {
-				if ($data[21] !== 'i') {
+			if (isset($data[20])) {
+				if ($data[20] !== 'i') {
 					$status = 1;
+				}
+
+			}
+
+			if (isset($data[21])) {
+				$fide_id_temp = $data[21];
+				if (trim($fide_id_temp) !== '') {
+					$fide_id = $data[21];
 				}
 
 			}
@@ -462,9 +492,9 @@ class RatingController extends Controller
 
 
 			if ($users->count() === 0) {
-				$insert = [
+				$insert    = [
 					'ncfp_id'        => trim($data[0]) != '' ? trim($data[0]) : NULL,
-					//'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
+					'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
 					'firstname'      => trim($data[2]) != '' ? trim($data[2]) : NULL,
 					'lastname'       => trim($data[1]) != '' ? trim($data[1]) : NULL,
 					'gender'         => trim($gender) != '' ? $gender : NULL,
@@ -482,8 +512,9 @@ class RatingController extends Controller
 					'blitz_prov'     => $blitz_prov,
 					'blitz_games'    => trim($data[15]) != '' ? trim($data[15]) : NULL,
 					'blitz_k'        => trim($data[16]) != '' ? trim($data[16]) : NULL,
-					'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
-					'total_games'    => trim($data[19]) != '' ? trim($data[19]) : 0,
+					//'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
+					'total_games'    => trim($data[18]) != '' ? trim($data[18]) : 0,
+					'birthdate'      => $bdate,
 					'birthyear'      => $byear,
 					'status'         => $status,
 					'created_at'     => date('Y-m-d H:i:s'),
@@ -493,7 +524,7 @@ class RatingController extends Controller
 			} else {
 				$update = [
 					//'ncfp_id'        => trim($data[0]) != '' ? trim($data[0]) : NULL,
-					//'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
+					'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
 					'firstname'      => trim($data[2]) != '' ? trim($data[2]) : NULL,
 					'lastname'       => trim($data[1]) != '' ? trim($data[1]) : NULL,
 					'gender'         => trim($gender) != '' ? $gender : NULL,
@@ -511,13 +542,14 @@ class RatingController extends Controller
 					'blitz_prov'     => $blitz_prov,
 					'blitz_games'    => trim($data[15]) != '' ? trim($data[15]) : NULL,
 					'blitz_k'        => trim($data[16]) != '' ? trim($data[16]) : NULL,
-					'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
-					'total_games'    => trim($data[19]) != '' ? trim($data[19]) : 0,
+					//'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
+					'total_games'    => trim($data[18]) != '' ? trim($data[18]) : 0,
+					'birthdate'      => $bdate,
 					'birthyear'      => $byear,
 					'status'         => $status,
 					'updated_at'     => date('Y-m-d H:i:s'),
 				];
-				//DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
+				DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
 			}
 		}
 
