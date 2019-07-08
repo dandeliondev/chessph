@@ -77,8 +77,8 @@
                         style="font-weight: bold">{!!$title !!} {{strtoupper($row->lastname)}}</span>, {{ucwords(strtolower($row->firstname))}}
             </td>
             <td data-label="Rating Standard">{{$row->standard}} {!!$standard_diff_disp!!}</td>
-            <td data-label="Rating Rapid">{{$row->rapid}}</td>
-            <td data-label="Rating Blitz">{{$row->blitz}}</td>
+            <td data-label="Rating Rapid">{{$row->rapid}} {!!$rapid_diff_disp!!}</td>
+            <td data-label="Rating Blitz">{{$row->blitz}} {!!$blitz_diff_disp!!}</td>
             <td data-label="Gender">{{strtolower($row->gender)}}</td>
             <td data-label="Age">{{$row->age}}</td>
             <td data-label="NCFP ID">{{$row->ncfp_id}}</td>
