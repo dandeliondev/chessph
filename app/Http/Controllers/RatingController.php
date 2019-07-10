@@ -303,7 +303,7 @@ class RatingController extends Controller
 		$keywords = array_slice($keywords, 0, 10);
 		$names    = array_slice($names, 0, 10);
 
-		$subheader = 'Based from NCFP May 1, 2019 release.';
+		$subheader = 'Based from NCFP July 1, 2019 release.';
 
 		$meta_description = $header . ' ' . implode(', ', $names);
 		$meta_keywords    = '' . implode(',', $keywords);
