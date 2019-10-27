@@ -303,7 +303,7 @@ class RatingController extends Controller
 		$keywords = array_slice($keywords, 0, 10);
 		$names    = array_slice($names, 0, 10);
 
-		$subheader = 'Based from NCFP July 1, 2019 release.';
+		$subheader = 'Based from NCFP Sep 1, 2019 release.';
 
 		$meta_description = $header . ' ' . implode(', ', $names);
 		$meta_keywords    = '' . implode(',', $keywords);
@@ -406,18 +406,19 @@ class RatingController extends Controller
 
 		ini_set('max_execution_time', 3600);
 		$file_n = Storage::url('rating_may_2019.csv');
-		$file_n = Storage::disk('local')->path('rating_july_2019.csv');;
+		$file_n = Storage::disk('local')->path('rating_sep_2019.csv');;
 		$file     = fopen($file_n, "r");
 		$all_data = array();
 		$array    = array();
 		$ctr      = 0;
-		$arr_int  = [6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 19];
+		$arr_int  = [10, 11, 12, 14, 15, 16, 18, 19, 20, 22];
 		$inserts  = [];
 		while (($data = fgetcsv($file, 200, ",")) !== false) {
 			if ($ctr == 0) {
 				$ctr++;
 				continue;
 			}
+
 			$byear   = NULL;
 			$bdate   = NULL;
 			$fide_id = NULL;
@@ -433,27 +434,46 @@ class RatingController extends Controller
 
 			}
 
-			if (isset($data[19])) {
-				$bdate = $data[19];
+			if (isset($data[23])) {
+				$bdate = trim($data[23]);
 				if (trim($bdate) == '') {
 					$bdate = NULL;
 				} else {
-					$byear = date('Y', strtotime($bdate));
-					$bdate = date('Y-m-d', strtotime($bdate));
+					$details_bdate = explode('/', $bdate);
+
+					if (count($details_bdate) === 3) {
+
+						$bdate = $details_bdate[2] . '-' . $details_bdate[1] . '-' . $details_bdate[0];
+						if (!$this->validateDate($bdate)) {
+							$bdate = NULL;
+						}
+
+						if ($details_bdate[2] > 1900 and $details_bdate[2] <= 2019) {
+
+							$byear = $details_bdate[2];
+						}
+
+					} elseif (count($details_bdate) === 1) {
+
+						if ($details_bdate[2] > 1900 and $details_bdate[2] <= 2019) {
+
+							$byear = $details_bdate[2];
+						}
+					}
 				}
 			}
 
-			if (isset($data[20])) {
-				if ($data[20] !== 'i') {
+			if (isset($data[24])) {
+				if ($data[24] !== 'i') {
 					$status = 1;
 				}
 
 			}
 
-			if (isset($data[21])) {
-				$fide_id_temp = $data[21];
+			if (isset($data[5])) {
+				$fide_id_temp = $data[5];
 				if (trim($fide_id_temp) !== '') {
-					$fide_id = $data[21];
+					$fide_id = $data[5];
 				}
 
 			}
@@ -475,79 +495,79 @@ class RatingController extends Controller
 			$rapid_prov    = NULL;
 			$blitz_prov    = NULL;
 
-			if (isset($data[9]) && trim($data[9]) != '') {
-				$standard_prov_det = explode('/', $data[9]);
+			if (isset($data[13]) && trim($data[13]) != '') {
+				$standard_prov_det = explode('/', $data[13]);
 				$standard_prov     = (integer)$standard_prov_det[0];
 			}
 
-			if (isset($data[13]) && trim($data[13]) != '') {
-				$rapid_prov_det = explode('/', $data[13]);
+			if (isset($data[17]) && trim($data[17]) != '') {
+				$rapid_prov_det = explode('/', $data[17]);
 				$rapid_prov     = (integer)$rapid_prov_det[0];
 			}
 
-			if (isset($data[17]) && trim($data[17]) != '') {
-				$blitz_prov_det = explode('/', $data[17]);
+			if (isset($data[22]) && trim($data[22]) != '') {
+				$blitz_prov_det = explode('/', $data[22]);
 				$blitz_prov     = (integer)$blitz_prov_det[0];
 			}
 
-
 			if ($users->count() === 0) {
-				$insert    = [
-					'ncfp_id'        => trim($data[0]) != '' ? trim($data[0]) : NULL,
-					'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
-					'firstname'      => trim($data[2]) != '' ? trim($data[2]) : NULL,
-					'lastname'       => trim($data[1]) != '' ? trim($data[1]) : NULL,
-					'gender'         => trim($gender) != '' ? $gender : NULL,
-					'federation'     => trim($data[4]) != '' ? trim($data[4]) : NULL,
-					'title'          => trim($data[5]) != '' ? trim($data[5]) : NULL,
-					'standard'       => trim($data[6]) != '' ? trim($data[6]) : NULL,
-					'standard_prov'  => $standard_prov,
-					'standard_games' => trim($data[7]) != '' ? trim($data[7]) : NULL,
-					'standard_k'     => trim($data[8]) != '' ? trim($data[8]) : NULL,
-					'rapid'          => trim($data[10]) != '' ? trim($data[10]) : NULL,
-					'rapid_prov'     => $rapid_prov,
-					'rapid_games'    => trim($data[11]) != '' ? trim($data[11]) : NULL,
-					'rapid_k'        => trim($data[12]) != '' ? trim($data[12]) : NULL,
-					'blitz'          => trim($data[14]) != '' ? trim($data[14]) : NULL,
-					'blitz_prov'     => $blitz_prov,
-					'blitz_games'    => trim($data[15]) != '' ? trim($data[15]) : NULL,
-					'blitz_k'        => trim($data[16]) != '' ? trim($data[16]) : NULL,
-					//'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
-					'total_games'    => trim($data[18]) != '' ? trim($data[18]) : 0,
-					'birthdate'      => $bdate,
-					'birthyear'      => $byear,
-					'status'         => $status,
-					'created_at'     => date('Y-m-d H:i:s'),
-				];
-				$inserts[] = $insert;
-				DB::table('cph_ratings')->insert($insert);
+//				$insert    = [
+//					'ncfp_id'        => trim($data[0]) != '' ? trim($data[0]) : NULL,
+//					'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
+//					'firstname'      => trim($data[2]) != '' ? trim($data[2]) : NULL,
+//					'lastname'       => trim($data[1]) != '' ? trim($data[1]) : NULL,
+//					'gender'         => trim($gender) != '' ? $gender : NULL,
+//					'federation'     => trim($data[4]) != '' ? trim($data[4]) : NULL,
+//					'title'          => trim($data[9]) != '' ? trim($data[9]) : NULL,
+//					'standard'       => trim($data[10]) != '' ? trim($data[10]) : NULL,
+//					'standard_prov'  => $standard_prov,
+//					'standard_games' => trim($data[11]) != '' ? trim($data[11]) : NULL,
+//					'standard_k'     => trim($data[12]) != '' ? trim($data[12]) : NULL,
+//					'rapid'          => trim($data[14]) != '' ? trim($data[14]) : NULL,
+//					'rapid_prov'     => $rapid_prov,
+//					'rapid_games'    => trim($data[15]) != '' ? trim($data[15]) : NULL,
+//					'rapid_k'        => trim($data[16]) != '' ? trim($data[16]) : NULL,
+//					'blitz'          => trim($data[18]) != '' ? trim($data[18]) : NULL,
+//					'blitz_prov'     => $blitz_prov,
+//					'blitz_games'    => trim($data[19]) != '' ? trim($data[19]) : NULL,
+//					'blitz_k'        => trim($data[20]) != '' ? trim($data[20]) : NULL,
+//					//'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
+//					'total_games'    => trim($data[22]) != '' ? trim($data[22]) : 0,
+//					'birthdate'      => $bdate,
+//					'birthyear'      => $byear,
+//					'status'         => $status,
+//					'updated_at'     => date('Y-m-d H:i:s'),
+//					'created_at'     => date('Y-m-d H:i:s'),
+//				];
+//				$inserts[] = $insert;
+				//DB::table('cph_ratings')->insert($insert);
 			} else {
 				$update = [
 					//'ncfp_id'        => trim($data[0]) != '' ? trim($data[0]) : NULL,
-					'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
-					'firstname'      => trim($data[2]) != '' ? trim($data[2]) : NULL,
-					'lastname'       => trim($data[1]) != '' ? trim($data[1]) : NULL,
-					'gender'         => trim($gender) != '' ? $gender : NULL,
-					'federation'     => trim($data[4]) != '' ? trim($data[4]) : NULL,
-					'title'          => trim($data[5]) != '' ? trim($data[5]) : NULL,
-					'standard'       => trim($data[6]) != '' ? trim($data[6]) : NULL,
-					'standard_prov'  => $standard_prov,
-					'standard_games' => trim($data[7]) != '' ? trim($data[7]) : NULL,
-					'standard_k'     => trim($data[8]) != '' ? trim($data[8]) : NULL,
-					'rapid'          => trim($data[10]) != '' ? trim($data[10]) : NULL,
-					'rapid_prov'     => $rapid_prov,
-					'rapid_games'    => trim($data[11]) != '' ? trim($data[11]) : NULL,
-					'rapid_k'        => trim($data[12]) != '' ? trim($data[12]) : NULL,
-					'blitz'          => trim($data[14]) != '' ? trim($data[14]) : NULL,
-					'blitz_prov'     => $blitz_prov,
-					'blitz_games'    => trim($data[15]) != '' ? trim($data[15]) : NULL,
-					'blitz_k'        => trim($data[16]) != '' ? trim($data[16]) : NULL,
-					//'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
-					'total_games'    => trim($data[18]) != '' ? trim($data[18]) : 0,
-					'birthdate'      => $bdate,
-					'birthyear'      => $byear,
-					'status'         => $status,
-					'updated_at'     => date('Y-m-d H:i:s'),
+//					'fide_id'        => trim($fide_id) != '' ? trim($fide_id) : NULL,
+					'firstname'  => trim($data[2]) != '' ? trim($data[2]) : NULL,
+					'lastname'   => trim($data[1]) != '' ? trim($data[1]) : NULL,
+//					'gender'         => trim($gender) != '' ? $gender : NULL,
+//					'federation'     => trim($data[4]) != '' ? trim($data[4]) : NULL,
+//					'title'          => trim($data[9]) != '' ? trim($data[9]) : NULL,
+//					'standard'       => trim($data[10]) != '' ? trim($data[10]) : NULL,
+//					'standard_prov'  => $standard_prov,
+//					'standard_games' => trim($data[11]) != '' ? trim($data[11]) : NULL,
+//					'standard_k'     => trim($data[12]) != '' ? trim($data[12]) : NULL,
+//					'rapid'          => trim($data[14]) != '' ? trim($data[14]) : NULL,
+//					'rapid_prov'     => $rapid_prov,
+//					'rapid_games'    => trim($data[15]) != '' ? trim($data[15]) : NULL,
+//					'rapid_k'        => trim($data[16]) != '' ? trim($data[16]) : NULL,
+//					'blitz'          => trim($data[18]) != '' ? trim($data[18]) : NULL,
+//					'blitz_prov'     => $blitz_prov,
+//					'blitz_games'    => trim($data[19]) != '' ? trim($data[19]) : NULL,
+//					'blitz_k'        => trim($data[20]) != '' ? trim($data[20]) : NULL,
+//					//'r960'           => trim($data[18]) != '' ? trim($data[18]) : NULL,
+//					'total_games'    => trim($data[22]) != '' ? trim($data[22]) : 0,
+					'birthdate'  => $bdate,
+					'birthyear'  => $byear,
+//					'status'         => $status,
+					'updated_at' => date('Y-m-d H:i:s'),
 				];
 				DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
 			}
@@ -555,5 +575,13 @@ class RatingController extends Controller
 
 		fclose($file);
 	}
+
+	private function validateDate($date, $format = 'Y-m-d')
+	{
+		$tempDate = explode('-', $date);
+		// checkdate(month, day, year)
+		return checkdate($tempDate[1], $tempDate[2], $tempDate[0]);
+	}
+
 
 }

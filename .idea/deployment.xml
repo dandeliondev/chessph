@@ -30,6 +30,20 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="danideluna-cph">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="fullpotential ftp root directory">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="fullpotential ssh">
         <serverdata>
           <mappings>
