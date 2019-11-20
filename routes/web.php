@@ -29,4 +29,4 @@ Route::get('/ncfp/top100/{cat}/{age}', 'RatingController@index');
 Route::get('/ncfp/top100/{cat}', 'RatingController@index');
 Route::get('/sitemap.xml', 'SitemapController@index');
 
-Route::get('/import', 'RatingController@store_ratings');
+//Route::get('/import', 'RatingController@store_ratings');

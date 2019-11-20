@@ -8,9 +8,10 @@
     <tr>
         <th>#</th>
         <th>Name</th>
-        <th>Rating Standard</th>
-        <th>Rating Rapid</th>
-        <th>Rating Blitz</th>
+        <th>Standard</th>
+        <th>Rapid</th>
+        <th>Blitz</th>
+        <th>Fischer 960</th>
         <th>Gender</th>
         <th>Age</th>
         <th>NCFP ID</th>
@@ -39,10 +40,12 @@
             $standard_diff_disp = '';
             $rapid_diff_disp = '';
             $blitz_diff_disp = '';
+            $f960_diff_disp  = '';
 
             $standard_diff = $row->standard - $row->standard_prev;
             $rapid_diff = $row->rapid - $row->rapid_prev;
             $blitz_diff = $row->blitz - $row->blitz_prev;
+            $f960_diff = $row->f960 - $row->f960_prev;
 
             if($standard_diff <> 0){
                 if($standard_diff > 0){
@@ -71,6 +74,15 @@
                 }
             }
 
+        if($f960_diff <> 0){
+                if($f960_diff > 0){
+                    $f960_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating"><i class="arrow up icon"></i>'.$blitz_diff.'</div>';
+                }else{
+                $blitz_diff = $blitz_diff * -1;
+                    $f960_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating"><i class="arrow down icon"></i>'.$blitz_diff.'</div>';
+                }
+            }
+
 
 
         @endphp
@@ -82,6 +94,7 @@
             <td data-label="Rating Standard">{{$row->standard}} {!!$standard_diff_disp!!}</td>
             <td data-label="Rating Rapid">{{$row->rapid}} {!!$rapid_diff_disp!!}</td>
             <td data-label="Rating Blitz">{{$row->blitz}} {!!$blitz_diff_disp!!}</td>
+            <td data-label="Rating Blitz">{{$row->f960}} {!!$f960_diff_disp!!}</td>
             <td data-label="Gender">{{strtolower($row->gender)}}</td>
             <td data-label="Age">{{$row->age}}</td>
             <td data-label="NCFP ID">{{$row->ncfp_id}}</td>

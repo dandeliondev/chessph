@@ -38,6 +38,12 @@
                     <label>Rating Blitz</label>
                 </div>
             </div>
+            <div class="field">
+                <div class="ui radio checkbox sortby">
+                    <input type="radio" name="sort_by" value="f960"{{$qs['sort_by'] == 'f960' ? 'checked' :''}}>
+                    <label>Fischer 960</label>
+                </div>
+            </div>
 
         </div>
 
