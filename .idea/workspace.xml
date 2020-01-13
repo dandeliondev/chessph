@@ -4,11 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php" line="150" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="updates">
+    <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,21 +80,25 @@
     <session id="-19508602">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="env" value="16" />
-          <entry key="php" value="238" />
+          <entry key="env" value="18" />
+          <entry key="php" value="717" />
+          <entry key="txt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="63" />
-          <entry key="PHP" value="175" />
-          <entry key="PLAIN_TEXT" value="16" />
+          <entry key="Blade" value="73" />
+          <entry key="PHP" value="644" />
+          <entry key="PLAIN_TEXT" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -116,8 +119,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+            <state relative-caret-position="644">
+              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -125,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1027">
-              <caret line="56" column="71" selection-start-line="56" selection-start-column="71" selection-end-line="56" selection-end-column="71" />
+            <state relative-caret-position="199">
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -134,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="47" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="47" />
+            <state relative-caret-position="644">
+              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -143,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="24" column="121" lean-forward="true" selection-start-line="24" selection-start-column="121" selection-end-line="24" selection-end-column="121" />
+            <state relative-caret-position="659">
+              <caret line="154" column="31" selection-start-line="154" selection-start-column="31" selection-end-line="154" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -152,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_table.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="621">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -161,21 +164,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="306" lean-forward="true" selection-start-line="306" selection-end-line="306" />
+            <state relative-caret-position="169">
+              <caret line="435" column="33" lean-forward="true" selection-start-line="435" selection-start-column="33" selection-end-line="435" selection-end-column="33" />
               <folding>
-                <element signature="e#1790#10065#0#PHP" />
-                <element signature="e#10939#12717#0#PHP" />
-                <element signature="e#12720#13016#0#PHP" />
-                <element signature="e#13019#19084#0#PHP" />
-                <element signature="e#13709#13841#0#PHP" />
-                <element signature="e#13846#14497#0#PHP" />
-                <element signature="e#14502#14584#0#PHP" />
-                <element signature="e#14589#14717#0#PHP" />
-                <element signature="e#14722#14887#0#PHP" />
-                <element signature="e#15106#15266#0#PHP" />
-                <element signature="e#15271#15422#0#PHP" />
-                <element signature="e#15427#15578#0#PHP" />
+                <element signature="e#14077#14209#0#PHP" />
+                <element signature="e#13849#14500#0#PHP" />
+                <element signature="e#14505#14587#0#PHP" />
+                <element signature="e#14592#14720#0#PHP" />
+                <element signature="e#14725#14890#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -184,8 +180,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="345">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -194,7 +190,7 @@
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
-              <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -203,8 +199,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.css</find>
-      <find>adjust_text</find>
       <find>wom</find>
       <find>$header</find>
       <find>currentPage</find>
@@ -226,13 +220,15 @@
       <find>$fide_id</find>
       <find>increase</find>
       <find>store</find>
-      <find>gender</find>
       <find>2019</find>
       <find>updated_</find>
       <find>port</find>
       <find>$inserts</find>
       <find>birthdate</find>
       <find>f960_diff_disp</find>
+      <find>$data[2]</find>
+      <find>gender</find>
+      <find>trim</find>
     </findStrings>
     <replaceStrings>
       <replace>!=</replace>
@@ -243,6 +239,16 @@
       <replace>2019-04-19T07:23:46+00:00</replace>
       <replace>$current_page</replace>
       <replace>&quot;</replace>
+      <replace>$col_ncfp_id</replace>
+      <replace>$col_firstname</replace>
+      <replace>$col_lastname</replace>
+      <replace>$col_federation</replace>
+      <replace>$col_title</replace>
+      <replace>$col_standard</replace>
+      <replace>$col_rapid</replace>
+      <replace>$col_f960</replace>
+      <replace>$col_blitz</replace>
+      <replace>$this-&gt;sanitize</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -273,11 +279,11 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_05_23_014920_alter_cph_ratings_add_960.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_08_225137_alter_cph_ratings_add_prev_rating.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_11_20_170414_alter_cph_ratings_add_f960.php" />
-        <option value="$PROJECT_DIR$/config/database.php" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/rating_table.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/database.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" />
       </list>
     </option>
@@ -407,6 +413,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -467,7 +474,11 @@
       <workItem from="1568447799085" duration="5287000" />
       <workItem from="1572172950542" duration="2711000" />
       <workItem from="1572180885381" duration="14000" />
-      <workItem from="1574238044819" duration="10711000" />
+      <workItem from="1574238044819" duration="11592000" />
+      <workItem from="1574744073192" duration="998000" />
+      <workItem from="1574862302892" duration="2888000" />
+      <workItem from="1575004822675" duration="49000" />
+      <workItem from="1578903441310" duration="3880000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1552667614679</created>
@@ -658,11 +669,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572175342890</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="November">
+      <created>1574255620374</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1574255620374</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171989000" />
+    <option name="totallyTimeSpent" value="180685000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -729,7 +747,8 @@
     <MESSAGE value="seo optimization" />
     <MESSAGE value="added previous rating displays" />
     <MESSAGE value="updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+    <MESSAGE value="November" />
+    <option name="LAST_COMMIT_MESSAGE" value="November" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
@@ -844,9 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-23">
           <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-          <folding>
-            <element signature="e#7#45#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,20 +873,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_20_171406_alter_cph_ratings_add_f960.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_20_171224_alter_cph_ratings_add_f960.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-457">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_20_171406_alter_cph_ratings_add_f960.php" />
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_20_171224_alter_cph_ratings_add_f960.php" />
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_20_170414_alter_cph_ratings_add_f960.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
@@ -878,72 +882,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.php">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1027">
-          <caret line="56" column="71" selection-start-line="56" selection-start-column="71" selection-end-line="56" selection-end-column="71" />
+        <state relative-caret-position="644">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
+    <entry file="file://$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="644">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
-          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rating/ncfprating.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="24" column="121" lean-forward="true" selection-start-line="24" selection-start-column="121" selection-end-line="24" selection-end-column="121" />
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_table.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="621">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/rating_search_filter.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="154" column="31" selection-start-line="154" selection-start-column="31" selection-end-line="154" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="306" lean-forward="true" selection-start-line="306" selection-end-line="306" />
+        <state relative-caret-position="169">
+          <caret line="435" column="33" lean-forward="true" selection-start-line="435" selection-start-column="33" selection-end-line="435" selection-end-column="33" />
           <folding>
-            <element signature="e#1790#10065#0#PHP" />
-            <element signature="e#10939#12717#0#PHP" />
-            <element signature="e#12720#13016#0#PHP" />
-            <element signature="e#13019#19084#0#PHP" />
-            <element signature="e#13709#13841#0#PHP" />
-            <element signature="e#13846#14497#0#PHP" />
-            <element signature="e#14502#14584#0#PHP" />
-            <element signature="e#14589#14717#0#PHP" />
-            <element signature="e#14722#14887#0#PHP" />
-            <element signature="e#15106#15266#0#PHP" />
-            <element signature="e#15271#15422#0#PHP" />
-            <element signature="e#15427#15578#0#PHP" />
+            <element signature="e#14077#14209#0#PHP" />
+            <element signature="e#13849#14500#0#PHP" />
+            <element signature="e#14505#14587#0#PHP" />
+            <element signature="e#14592#14720#0#PHP" />
+            <element signature="e#14725#14890#0#PHP" />
           </folding>
         </state>
       </provider>

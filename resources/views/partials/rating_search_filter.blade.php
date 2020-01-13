@@ -130,6 +130,12 @@
             </div>
             <div class="field">
                 <div class="ui checkbox">
+                    <input type="checkbox" name="title[]" value="agm" {{in_array('agm',$qs['title']) ? 'checked' :''}}>
+                    <label>AGM</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
                     <input type="checkbox" name="title[]" value="nm" {{in_array('nm',$qs['title']) ? 'checked' :''}}>
                     <label>NM</label>
                 </div>
