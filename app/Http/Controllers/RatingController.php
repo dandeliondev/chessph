@@ -297,7 +297,7 @@ class RatingController extends Controller
         $keywords = array_slice($keywords, 0, 10);
         $names    = array_slice($names, 0, 10);
 
-        $subheader = 'Based from NCFP Mar 1, 2020 release.';
+        $subheader = 'Based from NCFP Dec 1, 2020 release.';
 
         $meta_description = $header . ' ' . implode(', ', $names);
         $meta_keywords    = '' . implode(',', $keywords);
@@ -432,18 +432,18 @@ class RatingController extends Controller
             $gender  = null;
 
             $col_gender     = 3;
-            $col_bdate      = 23;
-            $col_status     = 24;
-            $col_fide       = 25;
+            $col_bdate      = 27;
+            $col_status     = 28;
+            $col_fide       = 5;
             $col_ncfp_id    = 0;
             $col_lastname   = 1;
             $col_firstname  = 2;
             $col_federation = 4;
-            $col_title      = 5;
-            $col_standard   = 6;
-            $col_rapid      = 10;
-            $col_blitz      = 14;
-            $col_f960       = 18;
+            $col_title      = 9;
+            $col_standard   = 10;
+            $col_rapid      = 14;
+            $col_blitz      = 18;
+            $col_f960       = 22;
 
             $arr_int = [$col_standard, $col_rapid, $col_blitz, $col_f960];
 
@@ -452,10 +452,15 @@ class RatingController extends Controller
             if (isset($data[$col_gender])) {
                 if ($data[$col_gender] !== '') {
                     $gender = strtolower($data[$col_gender]);
+                } elseif ($data[$col_gender] !== 'F') {
+                    $gender = "";
                 } else {
                     $gender = null;
                 }
+            }
 
+            if ($data[$col_ncfp_id] === 'A00602') {
+                $gender = '';
             }
 
             if (isset($data[$col_bdate])) {
@@ -513,6 +518,12 @@ class RatingController extends Controller
 
             $ncfp_id = $this->sanitize($data[$col_ncfp_id]) != '' ? $this->sanitize($data[$col_ncfp_id]) : null;
 
+            if ($data[$col_ncfp_id] === 'V00422') {
+                $title = 'gm';
+            } else {
+                $title = $this->sanitize($data[$col_title]) != '' ? $this->sanitize($data[$col_title]) : null;
+            }
+
             echo '<br />' . $ncfp_id;
 
             $users = DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->get();
@@ -525,7 +536,7 @@ class RatingController extends Controller
                     'lastname'   => $this->sanitize($data[$col_lastname]) != '' ? $this->sanitize($data[$col_lastname]) : null,
                     'gender'     => $this->sanitize($gender) != '' ? $gender : null,
                     'federation' => $this->sanitize($data[$col_federation]) != '' ? $this->sanitize($data[$col_federation]) : null,
-                    'title'      => $this->sanitize($data[$col_title]) != '' ? $this->sanitize($data[$col_title]) : null,
+                    'title'      => $title,
                     'standard'   => $this->sanitize($data[$col_standard]) != '' ? $this->sanitize($data[$col_standard]) : null,
                     'rapid'      => $this->sanitize($data[$col_rapid]) != '' ? $this->sanitize($data[$col_rapid]) : null,
                     'blitz'      => $this->sanitize($data[$col_blitz]) != '' ? $this->sanitize($data[$col_blitz]) : null,
@@ -547,7 +558,7 @@ class RatingController extends Controller
                     //'lastname'       => $this->sanitize($col_lastname) != '' ? $this->sanitize($col_lastname) : NULL,
                     'gender'     => $this->sanitize($gender) != '' ? $gender : null,
                     'federation' => $this->sanitize($data[$col_federation]) != '' ? $this->sanitize($data[$col_federation]) : null,
-                    'title'      => $this->sanitize($data[$col_title]) != '' ? $this->sanitize($data[$col_title]) : null,
+                    'title'      => $title,
                     'standard'   => $this->sanitize($data[$col_standard]) != '' ? $this->sanitize($data[$col_standard]) : null,
                     'rapid'      => $this->sanitize($data[$col_rapid]) != '' ? $this->sanitize($data[$col_rapid]) : null,
                     'blitz'      => $this->sanitize($data[$col_blitz]) != '' ? $this->sanitize($data[$col_blitz]) : null,

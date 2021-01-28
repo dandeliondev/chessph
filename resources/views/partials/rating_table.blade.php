@@ -47,39 +47,41 @@
             $blitz_diff = $row->blitz - $row->blitz_prev;
             $f960_diff = $row->f960 - $row->f960_prev;
 
+            $based_from_monthyear = 'March 2020';
+
             if($standard_diff <> 0){
                 if($standard_diff > 0){
-                    $standard_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating"><i class="arrow up icon"></i>'.$standard_diff.'</div>';
+                    $standard_diff_disp = '<div class="ui horizontal label basic green mini" title="rating increase since  '.$based_from_monthyear.'"><i class="arrow up icon"></i>'.$standard_diff.'</div>';
                 }else{
                     $standard_diff = $standard_diff * -1;
-                    $standard_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating"><i class="arrow down icon"></i>'.$standard_diff.'</div>';
+                    $standard_diff_disp = '<div class="ui horizontal label basic red mini" title="rating decrease since '.$based_from_monthyear.'""><i class="arrow down icon"></i>'.$standard_diff.'</div>';
                 }
             }
 
             if($rapid_diff <> 0){
                 if($rapid_diff > 0){
-                    $rapid_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating"><i class="arrow up icon"></i>'.$rapid_diff.'</div>';
+                    $rapid_diff_disp = '<div class="ui horizontal label basic green mini" title="rating increase since  '.$based_from_monthyear.'"><i class="arrow up icon"></i>'.$rapid_diff.'</div>';
                 }else{
                 $rapid_diff = $rapid_diff * -1;
-                    $rapid_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating"><i class="arrow down icon"></i>'.$rapid_diff.'</div>';
+                    $rapid_diff_disp = '<div class="ui horizontal label basic red mini" title="rating decrease since from '.$based_from_monthyear.'"><i class="arrow down icon"></i>'.$rapid_diff.'</div>';
                 }
             }
 
             if($blitz_diff <> 0){
                 if($blitz_diff > 0){
-                    $blitz_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating"><i class="arrow up icon"></i>'.$blitz_diff.'</div>';
+                    $blitz_diff_disp = '<div class="ui horizontal label basic green mini" title="rating increase since  '.$based_from_monthyear.'"><i class="arrow up icon"></i>'.$blitz_diff.'</div>';
                 }else{
                 $blitz_diff = $blitz_diff * -1;
-                    $blitz_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating"><i class="arrow down icon"></i>'.$blitz_diff.'</div>';
+                    $blitz_diff_disp = '<div class="ui horizontal label basic red mini" title="rating decrease since from '.$based_from_monthyear.'"><i class="arrow down icon"></i>'.$blitz_diff.'</div>';
                 }
             }
 
         if($f960_diff <> 0){
                 if($f960_diff > 0){
-                    $f960_diff_disp = '<div class="ui horizontal label basic green mini" title="increase from previous rating"><i class="arrow up icon"></i>'.$blitz_diff.'</div>';
+                    $f960_diff_disp = '<div class="ui horizontal label basic green mini" title="rating increase since  '.$based_from_monthyear.'"><i class="arrow up icon"></i>'.$blitz_diff.'</div>';
                 }else{
                 $blitz_diff = $blitz_diff * -1;
-                    $f960_diff_disp = '<div class="ui horizontal label basic red mini" title="decrease from previous rating"><i class="arrow down icon"></i>'.$blitz_diff.'</div>';
+                    $f960_diff_disp = '<div class="ui horizontal label basic red mini" title="rating decrease since from '.$based_from_monthyear.'"><i class="arrow down icon"></i>'.$blitz_diff.'</div>';
                 }
             }
 

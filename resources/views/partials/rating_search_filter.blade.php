@@ -124,7 +124,7 @@
             <label for="title" class="green_label">Title</label>
             <div class="field">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="title[]" value="un" {{in_array('un',$qs['title']) ? 'checked' :''}}>
+                    <input type="checkbox" name="title[]" value="un" {{in_array('un',$qs['title']) ? 'checked   ' :''}}>
                     <label>Untitled</label>
                 </div>
             </div>

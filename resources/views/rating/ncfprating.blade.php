@@ -29,7 +29,9 @@
         reference,
         you may find the NCFP
         official rating list on their <a href="https://www.facebook.com/groups/569867936728217/"
-                                         target="_blank">facebook page</a>
+                                         target="_blank">facebook page</a> or <a href="https://ncfph.org"
+                                                                                 target="_blank">ncfph.org</a> <br /> Credits goes to sir <a href="https://www.facebook.com/groups/2273539726042561/user/100004879900128/"
+        target="_blank">Edward Serrano</a> to whom without his dedication won't make this ratings compilation possible
     </div>
 
 
