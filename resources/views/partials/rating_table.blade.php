@@ -47,7 +47,7 @@
             $blitz_diff = $row->blitz - $row->blitz_prev;
             $f960_diff = $row->f960 - $row->f960_prev;
 
-            $based_from_monthyear = 'March 2020';
+            $based_from_monthyear = 'December 2020';
 
             if($standard_diff <> 0){
                 if($standard_diff > 0){

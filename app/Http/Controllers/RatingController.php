@@ -26,13 +26,13 @@ class RatingController extends Controller
     {
         //$current_segment = $this->current_segment();
 
-        $nav      = $this->nav($request);
+        $nav = $this->nav($request);
         $segments = '';
         foreach ($request->segments() as $segment) {
             $segments .= $segment . '/';
         }
 
-        $names      = [];
+        $names = [];
         $keywords[] = 'ncfp';
         $keywords[] = 'rating';
         $keywords[] = 'national chess federation of philippines';
@@ -41,34 +41,34 @@ class RatingController extends Controller
         $keywords[] = 'top players';
 
         $titles = ['un', 'agm', 'nm', 'cm', 'fm', 'im', 'gm', 'wfm', 'wcm', 'wim', 'wgm'];
-        $qs     = [
-            'search'     => $request->input('search') ?? '',
-            'sort_by'    => $request->input('sort_by') ?? 'lastname',
-            'order'      => $request->input('order') ?? 'asc',
-            'age_from'   => $request->input('age_from') ?? 0,
+        $qs = [
+            'search' => $request->input('search') ?? '',
+            'sort_by' => $request->input('sort_by') ?? 'lastname',
+            'order' => $request->input('order') ?? 'asc',
+            'age_from' => $request->input('age_from') ?? 0,
             'age_option' => $request->input('age_option') ?? 'any',
-            'age_to'     => $request->input('age_to') ?? 20,
-            'age_basis'  => $request->input('age_basis') ?? 'birthyear',
-            'gender'     => $request->input('gender') ?? 'all',
-            'title'      => $request->input('title') ?? $titles,
+            'age_to' => $request->input('age_to') ?? 20,
+            'age_basis' => $request->input('age_basis') ?? 'birthyear',
+            'gender' => $request->input('gender') ?? 'all',
+            'title' => $request->input('title') ?? $titles,
         ];
-        $users  = DB::table('cph_ratings');
+        $users = DB::table('cph_ratings');
         $users->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
         //$users->crossJoin(DB::raw('(select @rownum := 0) r'));
 
         if ($request->segment(1) == '') {
-            $header   = 'NCFP Rating';
+            $header = 'NCFP Rating';
             $paginate = false;
-            $filter   = true;
+            $filter = true;
 
-            $top_gainers  = DB::table('cph_ratings');
-            $top_all      = DB::table('cph_ratings');
-            $top_women    = DB::table('cph_ratings');
-            $top_nm       = DB::table('cph_ratings');
+            $top_gainers = DB::table('cph_ratings');
+            $top_all = DB::table('cph_ratings');
+            $top_women = DB::table('cph_ratings');
+            $top_nm = DB::table('cph_ratings');
             $top_untitled = DB::table('cph_ratings');
-            $top_juniors  = DB::table('cph_ratings');
-            $top_kiddies  = DB::table('cph_ratings');
-            $top_title    = DB::table('cph_ratings');
+            $top_juniors = DB::table('cph_ratings');
+            $top_kiddies = DB::table('cph_ratings');
+            $top_title = DB::table('cph_ratings');
 
             $top_gainers->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
             $top_all->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
@@ -79,6 +79,15 @@ class RatingController extends Controller
             $top_kiddies->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
             $top_title->select(DB::raw('*,standard - standard_prev as increase,YEAR(CURDATE()) - YEAR(birthdate) as age,DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`birthDate`)), \'%Y\')+0 AS age2'));
 
+            $top_gainers->where('federation','PHI');
+            $top_all->where('federation','PHI');
+            $top_women->where('federation','PHI');
+            $top_nm->where('federation','PHI');
+            $top_untitled->where('federation','PHI');
+            $top_juniors->where('federation','PHI');
+            $top_kiddies->where('federation','PHI');
+            $top_title->where('federation','PHI');
+
             $top_women->where('gender', 'f');
             $top_nm->where('title', 'nm');
             $top_untitled->where('title', null);
@@ -88,7 +97,8 @@ class RatingController extends Controller
 
             $top_kiddies->where(DB::raw('YEAR(CURDATE()) - YEAR(birthdate)'), '<=', 12);
 
-            $top_title->where(DB::raw('title'), '<>', DB::raw('title_prev'));
+            $top_title->whereRaw(DB::raw('title <> title_prev'));
+            //$top_title->whereRaw('title <> title_prev OR (title != null and title_prev = null)');
 
             $top_gainers->orderBy('increase', 'desc');
             $top_all->orderBy('standard', 'desc');
@@ -106,71 +116,75 @@ class RatingController extends Controller
             $top_untitled->limit(10);
             $top_juniors->limit(10);
             $top_kiddies->limit(10);
-            $top_title->limit(1);
+            $top_title->limit(100);
 
-            $list_top_gainers  = $top_gainers->get();
-            $list_top_all      = $top_all->get();
-            $list_top_women    = $top_women->get();
-            $list_top_nm       = $top_nm->get();
+
+            $list_top_gainers = $top_gainers->get();
+            $list_top_all = $top_all->get();
+            $list_top_women = $top_women->get();
+            $list_top_nm = $top_nm->get();
             $list_top_untitled = $top_untitled->get();
-            $list_top_juniors  = $top_juniors->get();
-            $list_top_kiddies  = $top_kiddies->get();
-            $list_top_title    = $top_title->get();
+            $list_top_juniors = $top_juniors->get();
+            $list_top_kiddies = $top_kiddies->get();
+            $list_top_title = $top_title->get();
+
+
+
 
             $rank = 1;
             foreach ($list_top_all as $row) {
                 $keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
-                $names[]    = $rank . '. ' . ucwords(strtolower($row->lastname)) . ' ' . ucwords(strtolower($row->firstname));
+                $names[] = $rank . '. ' . ucwords(strtolower($row->lastname)) . ' ' . ucwords(strtolower($row->firstname));
                 $rank++;
             }
 
             $lists = [
                 0 => [
-                    'header'    => 'Top 10 Overall',
+                    'header' => 'Top 10 Overall',
                     'subheader' => '',
-                    'list'      => $list_top_all,
+                    'list' => $list_top_all,
                 ],
                 1 => [
-                    'header'    => 'Top 10 Women',
+                    'header' => 'Top 10 Women',
                     'subheader' => '',
-                    'list'      => $list_top_women,
+                    'list' => $list_top_women,
                 ],
                 2 => [
-                    'header'    => 'Top 10 National Masters',
+                    'header' => 'Top 10 National Masters',
                     'subheader' => '',
-                    'list'      => $list_top_nm,
+                    'list' => $list_top_nm,
                 ],
                 3 => [
-                    'header'    => 'Top 10 Non-Masters',
+                    'header' => 'Top 10 Non-Masters',
                     'subheader' => '',
-                    'list'      => $list_top_untitled,
+                    'list' => $list_top_untitled,
                 ],
                 4 => [
-                    'header'    => 'Top 10 Juniors',
+                    'header' => 'Top 10 Juniors',
                     'subheader' => '',
-                    'list'      => $list_top_juniors,
+                    'list' => $list_top_juniors,
                 ],
                 5 => [
-                    'header'    => 'Top 10 Kiddies',
+                    'header' => 'Top 10 Kiddies',
                     'subheader' => '',
-                    'list'      => $list_top_kiddies,
+                    'list' => $list_top_kiddies,
                 ],
                 6 => [
-                    'header'    => 'Latest Title Awardee',
+                    'header' => 'Latest Title Awardee',
                     'subheader' => '',
-                    'list'      => $list_top_title,
+                    'list' => $list_top_title,
                 ],
                 7 => [
-                    'header'    => 'Top 10 Highest Rating Increase',
+                    'header' => 'Top 10 Highest Rating Increase',
                     'subheader' => '',
-                    'list'      => $list_top_gainers,
+                    'list' => $list_top_gainers,
                 ]
             ];
 
         } elseif ($request->segment(2) != 'top100') {
             $paginate = true;
-            $filter   = true;
-            $header   = 'NCFP Rating List';
+            $filter = true;
+            $header = 'NCFP Rating List';
 
             $users->orderBy($qs['sort_by'], $qs['order']);
 
@@ -214,6 +228,7 @@ class RatingController extends Controller
 
 //            echo $users->toSql();
 //            exit();
+            $users->where('federation','PHI');
 
             $list = $users->paginate(100);
 
@@ -228,24 +243,24 @@ class RatingController extends Controller
             }
             foreach ($list as $row) {
                 $keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
-                $names[]    = strtolower($row->lastname . ' ' . $row->firstname);
+                $names[] = strtolower($row->lastname . ' ' . $row->firstname);
             }
 
             $lists = [
                 0 => [
-                    'header'    => '',
+                    'header' => '',
                     'subheader' => '',
-                    'list'      => $list,
+                    'list' => $list,
                 ]
             ];
 
         } else {
             $paginate = false;
-            $filter   = false;
+            $filter = false;
 
             $users->orderBy('standard', 'desc');
 
-            $age    = $request->segment(5);
+            $age = $request->segment(5);
             $gender = $request->segment(3);
             $header = 'NCFP Rating Top 100';
 
@@ -272,7 +287,7 @@ class RatingController extends Controller
                 $users->whereRaw(DB::raw("title is NULL"));
                 $header .= ' Non-Master';
             }
-
+            $users->where('federation','PHI');
             $users->limit(100);
 
             $list = $users->get();
@@ -280,43 +295,43 @@ class RatingController extends Controller
             $rank = 1;
             foreach ($list as $row) {
                 $keywords[] = strtolower($row->lastname . ' ' . $row->firstname);
-                $names[]    = $rank . '. ' . ucwords(strtolower($row->lastname)) . ' ' . ucwords(strtolower($row->firstname));
+                $names[] = $rank . '. ' . ucwords(strtolower($row->lastname)) . ' ' . ucwords(strtolower($row->firstname));
                 $rank++;
             }
 
             $lists = [
                 0 => [
-                    'header'    => '',
+                    'header' => '',
                     'subheader' => '',
-                    'list'      => $list,
+                    'list' => $list,
                 ]
             ];
 
         }
 
         $keywords = array_slice($keywords, 0, 10);
-        $names    = array_slice($names, 0, 10);
+        $names = array_slice($names, 0, 10);
 
-        $subheader = 'Based from NCFP Dec 1, 2020 release.';
+        $subheader = 'Based from NCFP February 2023 release.';
 
         $meta_description = $header . ' ' . implode(', ', $names);
-        $meta_keywords    = '' . implode(',', $keywords);
-        $title            = ucwords(strtolower($header));
+        $meta_keywords = '' . implode(',', $keywords);
+        $title = ucwords(strtolower($header));
 
         $data = [
-            'paginate'         => $paginate,
-            'nav'              => $nav,
-            'qs'               => $qs,
-            'filter'           => $filter,
-            'lists'            => $lists,
-            'page'             => $request->input('page') ?? '1',
-            'segments'         => $segments,
-            'header'           => $header,
-            'title'            => $title,
-            'subheader'        => $subheader,
+            'paginate' => $paginate,
+            'nav' => $nav,
+            'qs' => $qs,
+            'filter' => $filter,
+            'lists' => $lists,
+            'page' => $request->input('page') ?? '1',
+            'segments' => $segments,
+            'header' => $header,
+            'title' => $title,
+            'subheader' => $subheader,
             'meta_description' => $meta_description,
-            'meta_keywords'    => $meta_keywords,
-            'title_colors'     => $this->title_colors(),
+            'meta_keywords' => $meta_keywords,
+            'title_colors' => $this->title_colors(),
 
         ];
 
@@ -328,22 +343,22 @@ class RatingController extends Controller
 
 
         $nav = [
-            'top100'  => [
-                'Overall'          => 'ncfp/top100/all',
+            'top100' => [
+                'Overall' => 'ncfp/top100/all',
                 'National Masters' => 'ncfp/top100/all/national-master',
-                'Non-Masters'      => 'ncfp/top100/all/non-master',
-                '60 and above'     => 'ncfp/top100/all/above/60',
-                '20 and below'     => 'ncfp/top100/all/under/20',
-                '18 and below'     => 'ncfp/top100/all/under/18',
-                '16 and below'     => 'ncfp/top100/all/under/16',
-                '14 and below'     => 'ncfp/top100/all/under/14',
-                '12 and below'     => 'ncfp/top100/all/under/12',
-                '10 and below'     => 'ncfp/top100/all/under/10',
-                '8 and below'      => 'ncfp/top100/all/under/8',
-                '6 and below'      => 'ncfp/top100/all/under/6',
+                'Non-Masters' => 'ncfp/top100/all/non-master',
+                '60 and above' => 'ncfp/top100/all/above/60',
+                '20 and below' => 'ncfp/top100/all/under/20',
+                '18 and below' => 'ncfp/top100/all/under/18',
+                '16 and below' => 'ncfp/top100/all/under/16',
+                '14 and below' => 'ncfp/top100/all/under/14',
+                '12 and below' => 'ncfp/top100/all/under/12',
+                '10 and below' => 'ncfp/top100/all/under/10',
+                '8 and below' => 'ncfp/top100/all/under/8',
+                '6 and below' => 'ncfp/top100/all/under/6',
             ],
             'top100m' => [
-                'Overall'      => 'ncfp/top100/men',
+                'Overall' => 'ncfp/top100/men',
                 '60 and above' => 'ncfp/top100/men/above/60',
                 '20 and below' => 'ncfp/top100/men/under/20',
                 '18 and below' => 'ncfp/top100/men/under/18',
@@ -351,11 +366,11 @@ class RatingController extends Controller
                 '14 and below' => 'ncfp/top100/men/under/14',
                 '12 and below' => 'ncfp/top100/men/under/12',
                 '10 and below' => 'ncfp/top100/men/under/10',
-                '8 and below'  => 'ncfp/top100/men/under/8',
-                '6 and below'  => 'ncfp/top100/men/under/6',
+                '8 and below' => 'ncfp/top100/men/under/8',
+                '6 and below' => 'ncfp/top100/men/under/6',
             ],
             'top100w' => [
-                'Overall'      => 'ncfp/top100/women',
+                'Overall' => 'ncfp/top100/women',
                 '60 and above' => 'ncfp/top100/women/above/60',
                 '20 and below' => 'ncfp/top100/women/under/20',
                 '18 and below' => 'ncfp/top100/women/under/18',
@@ -363,8 +378,8 @@ class RatingController extends Controller
                 '14 and below' => 'ncfp/top100/women/under/14',
                 '12 and below' => 'ncfp/top100/women/under/12',
                 '10 and below' => 'ncfp/top100/women/under/10',
-                '8 and below'  => 'ncfp/top100/women/under/8',
-                '6 and below'  => 'ncfp/top100/women/under/6',
+                '8 and below' => 'ncfp/top100/women/under/8',
+                '6 and below' => 'ncfp/top100/women/under/6',
             ],
 
         ];
@@ -375,11 +390,11 @@ class RatingController extends Controller
     private function title_colors()
     {
         $title_colors = [
-            'nm'  => 'green',
-            'cm'  => 'olive',
-            'fm'  => 'yellow',
-            'im'  => 'orange',
-            'gm'  => 'red',
+            'nm' => 'green',
+            'cm' => 'olive',
+            'fm' => 'yellow',
+            'im' => 'orange',
+            'gm' => 'red',
             'wnm' => 'teal',
             'wcm' => 'blue',
             'wfm' => 'pink',
@@ -398,7 +413,7 @@ class RatingController extends Controller
                 SET title_prev = title,standard_prev=standard,rapid_prev=rapid,blitz_prev=blitz,f960_prev=f960
 
             Step 2
-                Set arr int
+                Set $arr_int
 
             Step 3
                 Set col_ values
@@ -410,10 +425,10 @@ class RatingController extends Controller
 
         ini_set('max_execution_time', 3600);
         //$file_n = Storage::url('rating_nov2_2019.csv');
-        $file_n = Storage::disk('local')->path('rating_may_2020.csv');
+        $file_n = Storage::disk('local')->path('rating_feb_2023.csv');
 
         $file = fopen($file_n, "r");
-        $ctr  = 0;
+        $ctr = 0;
 
         $inserts = [];
         while (($data = fgetcsv($file, 200, ",")) !== false) {
@@ -425,25 +440,25 @@ class RatingController extends Controller
             }
             $ctr++;
 
-            $byear   = null;
-            $bdate   = null;
+            $byear = null;
+            $bdate = null;
             $fide_id = null;
-            $status  = 2;
-            $gender  = null;
+            $status = 2;
+            $gender = null;
 
-            $col_gender     = 3;
-            $col_bdate      = 27;
-            $col_status     = 28;
-            $col_fide       = 5;
-            $col_ncfp_id    = 0;
-            $col_lastname   = 1;
-            $col_firstname  = 2;
+            $col_gender = 3;
+            $col_bdate = 27;
+            $col_status = 29;
+            $col_fide = 5;
+            $col_ncfp_id = 0;
+            $col_lastname = 1;
+            $col_firstname = 2;
             $col_federation = 4;
-            $col_title      = 9;
-            $col_standard   = 10;
-            $col_rapid      = 14;
-            $col_blitz      = 18;
-            $col_f960       = 22;
+            $col_title = 9;
+            $col_standard = 10;
+            $col_rapid = 14;
+            $col_blitz = 18;
+            $col_f960 = 22;
 
             $arr_int = [$col_standard, $col_rapid, $col_blitz, $col_f960];
 
@@ -529,46 +544,60 @@ class RatingController extends Controller
             $users = DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->get();
 
             if ($users->count() === 0) {
-                $insert    = [
-                    'ncfp_id'    => $this->sanitize($col_ncfp_id) != '' ? $this->sanitize($col_ncfp_id) : null,
-                    'fide_id'    => $this->sanitize($fide_id) != '' ? $this->sanitize($fide_id) : null,
-                    'firstname'  => $this->sanitize($data[$col_firstname]) != '' ? $this->sanitize($data[$col_firstname]) : null,
-                    'lastname'   => $this->sanitize($data[$col_lastname]) != '' ? $this->sanitize($data[$col_lastname]) : null,
-                    'gender'     => $this->sanitize($gender) != '' ? $gender : null,
+                $insert = [
+                    'ncfp_id' => $this->sanitize($col_ncfp_id) != '' ? $this->sanitize($col_ncfp_id) : null,
+                    'fide_id' => $this->sanitize($fide_id) != '' ? $this->sanitize($fide_id) : null,
+                    'firstname' => $this->sanitize($data[$col_firstname]) != '' ? $this->sanitize($data[$col_firstname]) : null,
+                    'lastname' => $this->sanitize($data[$col_lastname]) != '' ? $this->sanitize($data[$col_lastname]) : null,
+                    'gender' => $this->sanitize($gender) != '' ? $gender : null,
                     'federation' => $this->sanitize($data[$col_federation]) != '' ? $this->sanitize($data[$col_federation]) : null,
-                    'title'      => $title,
-                    'standard'   => $this->sanitize($data[$col_standard]) != '' ? $this->sanitize($data[$col_standard]) : null,
-                    'rapid'      => $this->sanitize($data[$col_rapid]) != '' ? $this->sanitize($data[$col_rapid]) : null,
-                    'blitz'      => $this->sanitize($data[$col_blitz]) != '' ? $this->sanitize($data[$col_blitz]) : null,
-                    'f960'       => $this->sanitize($data[$col_f960]) != '' ? $this->sanitize($data[$col_f960]) : null,
-                    'birthdate'  => $bdate,
-                    'birthyear'  => $byear,
-                    'status'     => $status,
+                    'title' => $title,
+                    'standard' => $this->sanitize($data[$col_standard]) != '' ? $this->sanitize($data[$col_standard]) : null,
+                    'rapid' => $this->sanitize($data[$col_rapid]) != '' ? $this->sanitize($data[$col_rapid]) : null,
+                    'blitz' => $this->sanitize($data[$col_blitz]) != '' ? $this->sanitize($data[$col_blitz]) : null,
+                    'f960' => $this->sanitize($data[$col_f960]) != '' ? $this->sanitize($data[$col_f960]) : null,
+                    'birthdate' => $bdate,
+                    'birthyear' => $byear,
+                    'status' => $status,
                     'updated_at' => date('Y-m-d H:i:s'),
                     'created_at' => date('Y-m-d H:i:s'),
                 ];
                 $inserts[] = $insert;
-                DB::table('cph_ratings')->insert($insert);
+
+
+                try {
+
+                    DB::table('cph_ratings')->insert($insert);
+                } catch (\Exception $e) {
+                    echo json_encode($insert) . '' . $e->getMessage();
+                }
+
             } else {
                 $update = [
 
                     //'ncfp_id'        => $this->sanitize($col_ncfp_id) != '' ? $this->sanitize($col_ncfp_id) : NULL,
-                    'fide_id'    => $this->sanitize($fide_id) != '' ? $this->sanitize($fide_id) : null,
+                    'fide_id' => $this->sanitize($fide_id) != '' ? $this->sanitize($fide_id) : null,
                     //'firstname'      => $this->sanitize($col_firstname) != '' ? $this->sanitize($col_firstname) : NULL,
                     //'lastname'       => $this->sanitize($col_lastname) != '' ? $this->sanitize($col_lastname) : NULL,
-                    'gender'     => $this->sanitize($gender) != '' ? $gender : null,
+                    'gender' => $this->sanitize($gender) != '' ? $gender : null,
                     'federation' => $this->sanitize($data[$col_federation]) != '' ? $this->sanitize($data[$col_federation]) : null,
-                    'title'      => $title,
-                    'standard'   => $this->sanitize($data[$col_standard]) != '' ? $this->sanitize($data[$col_standard]) : null,
-                    'rapid'      => $this->sanitize($data[$col_rapid]) != '' ? $this->sanitize($data[$col_rapid]) : null,
-                    'blitz'      => $this->sanitize($data[$col_blitz]) != '' ? $this->sanitize($data[$col_blitz]) : null,
-                    'f960'       => $this->sanitize($data[$col_f960]) != '' ? $this->sanitize($data[$col_f960]) : null,
-                    'birthdate'  => $bdate,
-                    'birthyear'  => $byear,
-                    'status'     => $status,
+                    'title' => $title,
+                    'standard' => $this->sanitize($data[$col_standard]) != '' ? $this->sanitize($data[$col_standard]) : null,
+                    'rapid' => $this->sanitize($data[$col_rapid]) != '' ? $this->sanitize($data[$col_rapid]) : null,
+                    'blitz' => $this->sanitize($data[$col_blitz]) != '' ? $this->sanitize($data[$col_blitz]) : null,
+                    'f960' => $this->sanitize($data[$col_f960]) != '' ? $this->sanitize($data[$col_f960]) : null,
+                    'birthdate' => $bdate,
+                    'birthyear' => $byear,
+                    'status' => $status,
                     'updated_at' => date('Y-m-d H:i:s'),
                 ];
-                DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
+
+                try {
+
+                    DB::table('cph_ratings')->where('ncfp_id', $ncfp_id)->update($update);
+                } catch (Exception $e) {
+                    echo json_encode($update) . '' . $e->getMessage();
+                }
             }
         }
 

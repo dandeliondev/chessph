@@ -44,7 +44,7 @@
 </div>
 <div class="footer">
     <p class="adjust_text20">&copy; {{date('Y')}} copyright chesshermit.com
-        <br /> Developed by ddeluna
+        <br /> Developed by DdeLuna
         <br /> "For the game that provided me education and taught me important life lessons"
     </p>
     <p>
