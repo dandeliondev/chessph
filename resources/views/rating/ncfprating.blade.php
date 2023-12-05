@@ -31,7 +31,7 @@
         official rating list on their <a href="https://www.facebook.com/groups/569867936728217/"
                                          target="_blank">facebook page</a> or <a href="https://ncfph.org"
                                                                                  target="_blank">ncfph.org</a> <br /> Credits is shared with sir <a href="https://www.facebook.com/groups/2273539726042561/user/100004879900128/"
-        target="_blank">Edward Serrano</a> to whom without his dedication won't make this ratings compilation possible
+        target="_blank">Edward Serrano</a> to whom without his dedication and hard work won't make this ratings compilation possible.
     </div>
 
 
@@ -54,7 +54,10 @@
 
 
     </script>
+    <!-- Google tag (gtag.js) -->
+
     <script>
+
 
         $(document).ready(function () {
             $('.ui.dropdown')

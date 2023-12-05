@@ -41,6 +41,17 @@ class RatingController extends Controller
         $keywords[] = 'top players';
 
         $titles = ['un', 'agm', 'nm', 'cm', 'fm', 'im', 'gm', 'wfm', 'wcm', 'wim', 'wgm'];
+
+        $revealer_arr = ['Danilo de Luna','D00497','DdeLuna'];
+
+        if(in_array($request->input('search'),$revealer_arr)){
+
+            return redirect()->away('https://danideluna.dev?Puzzle-Solved!-You-found-the-Hermit!-Cheers-to-your-sharp-mind!');
+
+            exit();
+        }
+
+
         $qs = [
             'search' => $request->input('search') ?? '',
             'sort_by' => $request->input('sort_by') ?? 'lastname',
@@ -312,7 +323,7 @@ class RatingController extends Controller
         $keywords = array_slice($keywords, 0, 10);
         $names = array_slice($names, 0, 10);
 
-        $subheader = 'Based from NCFP February 2023 release.';
+        $subheader = 'Based from December 2023 release.';
 
         $meta_description = $header . ' ' . implode(', ', $names);
         $meta_keywords = '' . implode(',', $keywords);
@@ -411,7 +422,7 @@ class RatingController extends Controller
          * STEP 1
                 UPDATE cph_ratings
                 SET title_prev = title,standard_prev=standard,rapid_prev=rapid,blitz_prev=blitz,f960_prev=f960
-
+ompo
             Step 2
                 Set $arr_int
 
@@ -425,7 +436,7 @@ class RatingController extends Controller
 
         ini_set('max_execution_time', 3600);
         //$file_n = Storage::url('rating_nov2_2019.csv');
-        $file_n = Storage::disk('local')->path('rating_feb_2023.csv');
+        $file_n = Storage::disk('local')->path('rating_dec_2023.csv');
 
         $file = fopen($file_n, "r");
         $ctr = 0;

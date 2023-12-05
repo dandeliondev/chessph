@@ -29,6 +29,34 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     @yield('header-assets')
 
+    <!--
+                                                             _______________________________
+               _______________________----------------------                                 `\
+             /:--__                                                                           |
+            ||< > |                                       ___________________________________/
+            | \__/_________________----------------------
+            |                                                                          |
+            |    In the realm of kings and pawns, where ratings rise and fall,         |
+            |    A hermit dwells in silent thought, a guardian of them all.            |
+            |     His identity, a mystery, waiting to be unsealed,                     \
+                  In letters bold or numbers cold, the answer is concealed.               |
+             |                                                                            |
+             |       At the mountain's foot, a hidden cave, where deeper truths abide,    |
+             |       A name, a hint, in shadowed alcoves, where the hermit likes to hide. |
+             |       Or seek the seal, fate's unique mark, in digits clear and keen,      |
+             \       A number that unveils the hermit, yet rarely seen.                   \
+               |                                                                          |
+               |     Enter the name, or cryptic word, or numbers that you spy,            |
+               |     In this chess world, where secrets swirl, your answer in the sky.    |
+               |     So ponder well, strategize, in this quest of hidden lore,            |
+               |     Find the hermit, thus etching your name in the annals of the wise.    \
+                \                                                  ______________________________
+                |  ______________________-------------------------                                \
+              |/`--_                                                                               |
+              ||[ ]||                                              ______________________________/
+               \===/___________________--------------------------
+                -->
+
 
 </head>
 <body>
@@ -45,7 +73,7 @@
 <div class="footer">
     <p class="adjust_text20">&copy; {{date('Y')}} copyright chesshermit.com
         <br /> Developed by DdeLuna
-        <br /> "For the game that provided me education and taught me important life lessons"
+        <br /> "For the game that provided my education and taught me valuable life lessons"
     </p>
     <p>
         <a href="https://www.facebook.com/groups/931932140310878/" target="_blank"><i class="facebook large icon social_icons"></i></a>
