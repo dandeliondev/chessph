@@ -11,13 +11,7 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-//
-//Route::get('/', function () {
-//    return redirect('rating/ncfp');
-//});
+
 Route::get('/', 'RatingController@index');
 Route::get('/rating/ncfp', 'RatingController@index');
 Route::get('/rating/ncfp/{cat}', 'RatingController@index');
