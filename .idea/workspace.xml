@@ -8,14 +8,8 @@
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/RatingController.php" line="407" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="feb 2023">
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Rating2Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/chessph.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/chessph.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="e184cfff-21ba-4b80-82e8-996a75a892b2" name="Default Changelist" comment="- minor bug fix&#10;- add documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,23 +259,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "L:/Development/wamp64/www/DANDELION_PROJECTS/chesshermit",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;L:/Development/wamp64/www/DANDELION_PROJECTS/chesshermit&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="H:\wamp64\www\dandelion\chessph\resources\views\partials" />
@@ -356,7 +350,8 @@
       <workItem from="1746019912109" duration="1178000" />
       <workItem from="1746297957687" duration="592000" />
       <workItem from="1746708918829" duration="42000" />
-      <workItem from="1751812864977" duration="13000" />
+      <workItem from="1751812864977" duration="728000" />
+      <workItem from="1752213340350" duration="585000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1552667614679</created>
@@ -596,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701797897345</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="- minor bug fix&#10;- add documentation">
+      <created>1751813001242</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1751813001242</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -680,7 +682,8 @@
     <MESSAGE value="mar 2020" />
     <MESSAGE value="dec 2020" />
     <MESSAGE value="feb 2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="feb 2023" />
+    <MESSAGE value="- minor bug fix&#10;- add documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="- minor bug fix&#10;- add documentation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
